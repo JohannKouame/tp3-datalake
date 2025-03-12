@@ -15,4 +15,9 @@ requests
 SQLAlchemy
 typing_extensions
 urllib3
-awscli-local 
+awscli-local
+apache-airflow
+apache-airflow-providers-postgres
+apache-airflow-providers-amazon
+psycopg2-binary
+datasets

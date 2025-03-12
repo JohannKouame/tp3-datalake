@@ -1,23 +1,29 @@
 version: '3.8'
 
+networks:
+  airflow-net:
+    driver: bridge
+
 services:
   python:
     build:
       context: .
-      dockerfile: infra/docker/Dockerfile
+      dockerfile: Dockerfile
     env_file:
       - .env
     volumes:
       - .:/app
     depends_on:
       localstack:
-        condition: service_healthy  # Attendre que LocalStack soit prêt
+        condition: service_healthy
     environment:
       - PYTHONPATH=/app
-      - AWS_ACCESS_KEY_ID=test
-      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_ACCESS_KEY_ID=root
+      - AWS_SECRET_ACCESS_KEY=root
       - AWS_DEFAULT_REGION=us-east-1
       - AWS_ENDPOINT_URL=http://localstack:4566
+    networks:
+      - airflow-net
 
   localstack:
     image: localstack/localstack:latest
@@ -28,11 +34,17 @@ services:
       - DATA_DIR=/tmp/localstack/data
       - LAMBDA_EXECUTOR=docker
       - DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=root
+      - AWS_SECRET_ACCESS_KEY=root
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localstack:4566
     ports:
       - "4566:4566"
     volumes:
       - './localstack:/var/lib/localstack'
       - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - airflow-net
     command: >
       sh -c "
       until curl -s http://localhost:4566/_localstack/health | grep '\"s3\": \"running\"'; do
@@ -51,3 +63,114 @@ services:
       retries: 5
       start_period: 5s
       timeout: 5s
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - airflow-net
+
+  airflow-webserver:
+    build: .
+    image: apache/airflow:2.7.1
+    container_name: airflow-webserver
+    hostname: airflow-webserver
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__WEBSERVER__SECRET_KEY=admin
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
+      - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/opt/airflow/logs
+      - AIRFLOW__LOGGING__REMOTE_LOGGING=False
+      - LAMBDA_EXECUTOR=docker
+      - DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=root
+      - AWS_SECRET_ACCESS_KEY=root
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ENDPOINT_URL=http://localstack:4566
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./src:/opt/airflow/src
+      - ./build:/opt/airflow/build
+      - ~/.aws:/root/.aws
+    ports:
+      - "8080:8080"
+    command: bash -c "airflow webserver"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - airflow-net
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.1
+    container_name: airflow-scheduler
+    hostname: airflow-scheduler
+    depends_on:
+      - airflow-webserver
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__WEBSERVER__SECRET_KEY=admin
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
+      - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/opt/airflow/logs
+      - AIRFLOW__LOGGING__REMOTE_LOGGING=False
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./src:/opt/airflow/src
+      - ./build:/opt/airflow/build
+      - ~/.aws:/root/.aws
+    command: bash -c "airflow scheduler"
+    networks:
+      - airflow-net
+
+  airflow-init:
+    image: apache/airflow:2.7.1
+    container_name: airflow-init
+    hostname: airflow-init
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - _AIRFLOW_DB_UPGRADE=true
+      - _AIRFLOW_WWW_USER_CREATE=true
+      - _AIRFLOW_WWW_USER_USERNAME=airflow
+      - _AIRFLOW_WWW_USER_PASSWORD=airflow
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - PYTHONPATH=/opt/airflow
+    command: >
+      bash -c "
+        echo 'Initializing Airflow database...';
+        airflow db init &&
+        airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com" &&
+        airflow version
+      "
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./src:/opt/airflow/src
+      - ./build:/opt/airflow/build
+      - ~/.aws:/root/.aws
+    networks:
+      - airflow-net
+
+volumes:
+  postgres_data:

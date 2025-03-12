@@ -1,7 +1,11 @@
 from src.client.aws_s3 import S3
-import logging
+#import logging
 from tqdm import tqdm
 import traceback
+
+from airflow.utils.log.logging_mixin import LoggingMixin
+
+logging = LoggingMixin().log
 
 LOGGING_VARIABLE = "[AWS S3]"
 
@@ -61,13 +65,16 @@ class AwsS3Repository:
             logging.info(f"{LOGGING_VARIABLE} 🚀 Uploading into {Bucket} ...", extra={"folders": folders})
             for split in folders:
                 split_data = data[split]
-                logging.info(msg=f"{LOGGING_VARIABLE} Transferring {split} data...", extra={"split_data": split_data})
-                for idx, unit in tqdm(enumerate(list(split_data['text'][:100])), desc=f"Uploading {split}", total=100):
+                logging.info(msg=f"{LOGGING_VARIABLE} Transferring {split} data...")
+                logging.info(msg=f"{LOGGING_VARIABLE} split_data: {split_data}")
+                for idx, unit in enumerate(list(split_data['text'][:100])):
+                    logging.info(f"{LOGGING_VARIABLE} Unit: {unit}")
                     # Text to upload
                     text_data = unit
                     # Path
                     key = f"{split}/{split}_{idx}.txt"
                     # Transfer into bucket
+                    logging.info(f"{LOGGING_VARIABLE} Uploading {text_data[:20]}... to {key}", extra={"key": key})
                     self.s3_client.put_object(Bucket=Bucket, Key=key, Body=text_data)
 
             return True
@@ -96,3 +103,18 @@ class AwsS3Repository:
         except Exception as exception:
             logging.critical(f"{LOGGING_VARIABLE} Error while uploading data into {Bucket} ...", extra={"error":exception})
             return False
+
+    def transform_data(self, source_bucket, target_bucket):
+        data = self.download_data(source_bucket)
+        # Simuler une transformation
+        transformed_data = {k: v + "_transformed" for k, v in data.items()}
+        self.upload_files(Bucket=target_bucket, data=transformed_data)
+
+    def upload_files(self, Bucket, data):
+        # Simuler l'upload S3
+        print(f"Uploading data to {Bucket}")
+
+    def download_data(self, Bucket):
+        # Simuler le téléchargement S3
+        logging.info(f"Downloading data from {Bucket}")
+        return {"sample": "data"}
