@@ -16,10 +16,15 @@ docker-compose up -d
 ```
 
 ## 2. Initialize and Run Apache Airflow
-First, initialize Airflow:
+First, initialize Postgres:
 
 ```bash
-docker-compose airflow-init
+docker-compose up postgres -d
+```
+
+Then, run airflow-init:
+```bash
+docker-compose up airflow-init
 ```
 
 Then, build and start the Airflow containers:
@@ -27,9 +32,15 @@ Then, build and start the Airflow containers:
 ```bash
 docker compose up --build
 ```
+## 3. Run DAG
+After all services are up, open the Airflow web interface interface in your browser : [Open Airflow Webserver](http://localhost:8080)
 
-## 3. API Usage with cURL
-Interact with the services using the following cURL commands:
+> Log in info are probably `airflow` and `airflow`
+
+Then, run the `data_lake_pipeline` dag
+
+## 4. API Usage with cURL
+After the dag successfull execution, you can interact with the services using the following cURL commands:
 
 ### Upload a File to Raw Bucket
 ```bash
@@ -45,7 +56,7 @@ curl "http://localhost:4566/raw"
 ```bash
 curl "http://localhost:4566/raw/data.txt" -o "downloaded_data.txt"
 ```
-## 4. Accessing Docker Containers to Inspect Buckets
+## 5. Accessing Docker Containers to Inspect Buckets
 
 To access the Flask application container and inspect S3 bucket contents, execute the following:
 
@@ -60,7 +71,7 @@ aws --endpoint-url=http://localstack:4566 s3 ls s3://raw
 aws --endpoint-url=http://localstack:4566 s3 ls s3://staging
 aws --endpoint-url=http://localstack:4566 s3 ls s3://curated
 ````
-## 5. Notes
+## 6. Notes
 - Ensure LocalStack is running before performing AWS CLI operations.
 - MongoDB and MySQL should be accessible and properly configured.
 - Modify any endpoint URLs if different from defaults.
