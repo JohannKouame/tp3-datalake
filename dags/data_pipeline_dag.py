@@ -4,6 +4,8 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 from src.command.manage_buckets import ingest_data
+from src.command.manage_buckets import process_to_staging
+from src.command.manage_buckets import process_to_curated
 
 from src.repository.aws_s3_repository import AwsS3Repository
 from src.client.aws_s3 import S3
@@ -21,15 +23,6 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(minutes=5)
 }
-
-def process_to_raw():
-    aws_s3.download_data("bucket_test")
-
-def transform_raw_to_staging():
-    aws_s3.transform_data(source_bucket="raw", target_bucket="staging")
-
-def transform_staging_to_curated():
-    aws_s3.transform_data(source_bucket="staging", target_bucket="curated")
 
 with DAG(
     'data_lake_pipeline',
@@ -58,14 +51,20 @@ with DAG(
 
     staging_task = PythonOperator(
         task_id='transform_raw_to_staging',
-        python_callable=transform_raw_to_staging,
-        provide_context=True
+        python_callable=process_to_staging,
+        op_kwargs={  # Les arguments à passer à la fonction
+            'bucket_name': 'raw',
+            'prefix': ["test", "train", "validation"]
+        },
     )
 
     curated_task = PythonOperator(
         task_id='transform_staging_to_curated',
-        python_callable=transform_staging_to_curated,
-        provide_context=True
+        python_callable=process_to_curated,
+        op_kwargs={  # Les arguments à passer à la fonction
+            'bucket_name': 'staging',
+            'prefix': ["test", "train", "validation"]
+        },
     )
 
     end = BashOperator(
@@ -74,4 +73,4 @@ with DAG(
     )
 
     # Définir l'ordre des tâches
-    start >> raw_task
+    start >> raw_task >> staging_task >> curated_task >> end

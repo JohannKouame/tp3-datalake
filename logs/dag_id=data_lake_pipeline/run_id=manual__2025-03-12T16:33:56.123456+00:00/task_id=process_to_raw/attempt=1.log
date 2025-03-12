@@ -1,0 +1,158 @@
+[2025-03-12T16:34:03.650+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-12T16:34:03.676+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T16:33:56.123456+00:00 [queued]>
+[2025-03-12T16:34:03.693+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T16:33:56.123456+00:00 [queued]>
+[2025-03-12T16:34:03.695+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-12T16:34:03.724+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): process_to_raw> on 2025-03-12 16:33:56.123456+00:00
+[2025-03-12T16:34:03.731+0000] {standard_task_runner.py:72} INFO - Started process 232 to run task
+[2025-03-12T16:34:03.738+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_lake_pipeline', 'process_to_raw', 'manual__2025-03-12T16:33:56.123456+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline_dag.py', '--cfg-path', '/tmp/tmpa8qpao8g']
+[2025-03-12T16:34:03.741+0000] {standard_task_runner.py:105} INFO - Job 20: Subtask process_to_raw
+[2025-03-12T16:34:03.760+0000] {logging_mixin.py:190} WARNING - /usr/local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-12T16:34:03.806+0000] {task_command.py:467} INFO - Running <TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T16:33:56.123456+00:00 [running]> on host ***-scheduler
+[2025-03-12T16:34:03.943+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_lake_pipeline' AIRFLOW_CTX_TASK_ID='process_to_raw' AIRFLOW_CTX_EXECUTION_DATE='2025-03-12T16:33:56.123456+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-12T16:33:56.123456+00:00'
+[2025-03-12T16:34:03.945+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-12T16:34:03.959+0000] {manage_buckets.py:22} INFO - [Data manager] Downloading data from HuggingFace...
+[2025-03-12T16:34:35.232+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/usr/local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/app/src/command/manage_buckets.py", line 23, in ingest_data
+    data = load_dataset(repo, dataset_name)
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1731, in dataset_module_factory
+    raise e1 from None
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1696, in dataset_module_factory
+    ).get_module()
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1067, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/usr/local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/usr/local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/usr/local/lib/python3.10/site-packages/datasets/data_files.py", line 388, in resolve_pattern
+    for filepath, info in fs.glob(pattern, detail=True, **glob_kwargs).items()
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_file_system.py", line 520, in glob
+    path = self.resolve_path(path, revision=kwargs.get("revision")).unresolve()
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_file_system.py", line 198, in resolve_path
+    repo_and_revision_exist, err = self._repo_and_revision_exist(repo_type, repo_id, revision)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_file_system.py", line 125, in _repo_and_revision_exist
+    self._api.repo_info(
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 2734, in repo_info
+    return method(
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 2591, in dataset_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: (ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 4a985fd0-e5e2-4847-80db-0f8678cb657a)')
+[2025-03-12T16:34:35.268+0000] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=data_lake_pipeline, task_id=process_to_raw, run_id=manual__2025-03-12T16:33:56.123456+00:00, execution_date=20250312T163356, start_date=20250312T163403, end_date=20250312T163435
+[2025-03-12T16:34:35.341+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-12T16:34:35.342+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 20 for task process_to_raw ((ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 4a985fd0-e5e2-4847-80db-0f8678cb657a)'); 232)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/usr/local/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/usr/local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/usr/local/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/usr/local/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/usr/local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/usr/local/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/app/src/command/manage_buckets.py", line 23, in ingest_data
+    data = load_dataset(repo, dataset_name)
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1849, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1731, in dataset_module_factory
+    raise e1 from None
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1696, in dataset_module_factory
+    ).get_module()
+  File "/usr/local/lib/python3.10/site-packages/datasets/load.py", line 1067, in get_module
+    data_files = DataFilesDict.from_patterns(
+  File "/usr/local/lib/python3.10/site-packages/datasets/data_files.py", line 721, in from_patterns
+    else DataFilesList.from_patterns(
+  File "/usr/local/lib/python3.10/site-packages/datasets/data_files.py", line 624, in from_patterns
+    resolve_pattern(
+  File "/usr/local/lib/python3.10/site-packages/datasets/data_files.py", line 388, in resolve_pattern
+    for filepath, info in fs.glob(pattern, detail=True, **glob_kwargs).items()
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_file_system.py", line 520, in glob
+    path = self.resolve_path(path, revision=kwargs.get("revision")).unresolve()
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_file_system.py", line 198, in resolve_path
+    repo_and_revision_exist, err = self._repo_and_revision_exist(repo_type, repo_id, revision)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_file_system.py", line 125, in _repo_and_revision_exist
+    self._api.repo_info(
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 2734, in repo_info
+    return method(
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 2591, in dataset_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/usr/local/lib/python3.10/site-packages/requests/adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: (ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: 4a985fd0-e5e2-4847-80db-0f8678cb657a)')
+[2025-03-12T16:34:35.379+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-03-12T16:34:35.411+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-12T16:34:35.416+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -2,6 +2,8 @@ from src.client.aws_s3 import S3
 #import logging
 from tqdm import tqdm
 import traceback
+import csv
+import io
 
 from airflow.utils.log.logging_mixin import LoggingMixin
 
@@ -28,11 +30,14 @@ class AwsS3Repository:
             response[folder_name] = file_count
         return response
 
-    def process_data(self, Bucket, Prefix, process_func) -> dict:
+    def process_data(self, Bucket, Prefix, process_func, to_staging=False, to_curated=False, dataset_type=None) -> dict:
         try:
             logging.info(msg=f"{LOGGING_VARIABLE} Getting list of {Bucket}'s files...")
-            files = self.list_files(Bucket, Prefix)
+
+            response = self.list_files(Bucket, Prefix)
+            files = [obj['Key'] for obj in response.get('Contents', [])]
             processed_data = {}
+            all_tokens = []
 
             for file_key in files:
                 logging.info(msg=f"{LOGGING_VARIABLE}📥 Download {file_key} from {Bucket}...")
@@ -43,10 +48,44 @@ class AwsS3Repository:
                 clean_text = process_func(raw_text)
                 processed_data[file_key] = clean_text
 
-            return  processed_data
+                if to_staging:
+                    self.upload_processed_file(Bucket='staging', file_key=file_key, clean_text=clean_text)
+                if to_curated:
+                    all_tokens.extend(clean_text)
+
+            if to_curated and dataset_type:
+                self.upload_aggregated_tokens_to_csv(Bucket='curated', tokens=all_tokens, dataset_type=dataset_type)
+
+            return processed_data
         except Exception as exception:
-            logging.critical(f"{LOGGING_VARIABLE} Error while processing data {Bucket} ...", extra={"error":exception})
+            logging.critical(f"{LOGGING_VARIABLE} Error while processing data {Bucket} ... : {exception}")
             return None
+
+    def upload_processed_file(self, Bucket, file_key, clean_text):
+        try:
+            logging.info(f"Uploading cleaned data for {file_key} to {Bucket}...")
+            clean_text_encoded = ' '.join(clean_text).encode('utf-8') if isinstance(clean_text, list) else clean_text.encode('utf-8')
+            self.s3_client.put_object(Bucket=Bucket, Key=file_key, Body=clean_text_encoded)
+        except Exception as exception:
+            logging.critical(f"Error while uploading {file_key} to {Bucket}...", extra={"error": exception})
+
+    def upload_aggregated_tokens_to_csv(self, Bucket, tokens, dataset_type='train'):
+        try:
+            csv_buffer = io.StringIO()
+            csv_writer = csv.writer(csv_buffer)
+
+            for token in tokens:
+                csv_writer.writerow([token])
+
+            csv_content = csv_buffer.getvalue().encode('utf-8')
+            s3_key = f'{dataset_type}.csv'
+
+            logging.info(f"Uploading aggregated tokenized data to {Bucket}/{s3_key}...")
+            self.s3_client.put_object(Bucket=Bucket, Key=s3_key, Body=csv_content)
+            logging.info(f"Successfully uploaded aggregated data to {Bucket}/{s3_key}.")
+        except Exception as exception:
+            logging.critical(f"Error while uploading aggregated data to {Bucket}...", extra={"error": exception})
+
 
     def upload_files_into_one_folder(self, Bucket:str, Key:str, Body:str) -> bool:
         try:
@@ -104,17 +143,37 @@ class AwsS3Repository:
             logging.critical(f"{LOGGING_VARIABLE} Error while uploading data into {Bucket} ...", extra={"error":exception})
             return False
 
-    def transform_data(self, source_bucket, target_bucket):
-        data = self.download_data(source_bucket)
-        # Simuler une transformation
-        transformed_data = {k: v + "_transformed" for k, v in data.items()}
-        self.upload_files(Bucket=target_bucket, data=transformed_data)
+    def upload_consolidated_csv(self, Bucket, dataset_type, processed_data):
+        """
+        Consolidate tokenized data into a single CSV file and upload it to the specified S3 bucket.
 
-    def upload_files(self, Bucket, data):
-        # Simuler l'upload S3
-        print(f"Uploading data to {Bucket}")
+        Args:
+            Bucket (str): The S3 bucket name (e.g., 'curated').
+            dataset_type (str): The dataset type ('train', 'test', 'validation').
+            processed_data (dict): A dictionary where keys are file names and values are lists of tokens.
+        """
+        try:
+            # Créer un fichier CSV en mémoire
+            csv_buffer = io.StringIO()
+            csv_writer = csv.writer(csv_buffer)
 
-    def download_data(self, Bucket):
-        # Simuler le téléchargement S3
-        logging.info(f"Downloading data from {Bucket}")
-        return {"sample": "data"}
+            # Écrire chaque token sur une ligne
+            for file_key, tokens in processed_data.items():
+                for token in tokens:
+                    csv_writer.writerow([token])
+
+            # Encoder le contenu CSV
+            csv_content = csv_buffer.getvalue().encode('utf-8')
+
+            # Définir le chemin du fichier dans le bucket S3
+            s3_key = f'{dataset_type}.csv'
+
+            logging.info(f"Uploading consolidated {dataset_type} data to {Bucket} as {s3_key}...")
+
+            # Uploader le fichier consolidé dans S3
+            self.s3_client.put_object(Bucket=Bucket, Key=s3_key, Body=csv_content)
+
+            logging.info(f"Successfully uploaded consolidated {dataset_type} data to {Bucket}/{s3_key}.")
+
+        except Exception as exception:
+            logging.critical(f"Error while uploading consolidated {dataset_type} data to {Bucket}...", extra={"error": exception})

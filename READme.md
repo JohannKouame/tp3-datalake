@@ -1,19 +1,71 @@
-1. **Do this before doing anything**
-* Execute the following cmd `docke-compose up -d`to allow the localstack and mangodb on your laptop
-* The following cmd to create the tree aws buckets `raw`, `staging`and `curate`:
-  * `aws --endpoint-url=http://localhost:4566 s3 mb s3://raw`
-  * `aws --endpoint-url=http://localhost:4566 s3 mb s3://staging`
-  * `aws --endpoint-url=http://localhost:4566 s3 mb s3://curated`
+# Project Setup and Usage Guide
 
-2. **Load data into raw bucket**
+## Prerequisites
+Ensure you have the following installed on your machine:
+- Docker
+- AWS CLI
+- Python (with `pip`)
+- LocalStack
+- MongoDB
 
-Run the `load_dataset.py`script to do that.
+## 1. Initialize Docker Containers
+Start the required services (LocalStack and MongoDB) using Docker Compose:
 
-3. **Run mysql locally as staging**
+```bash
+docker-compose up -d
+```
 
-* Run MySQL :`docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=staging -p 3306:3306 -d mysql:8.0`
-* Install dependency : `pip install mysql-connector-python`
+## 2. Initialize and Run Apache Airflow
+First, initialize Airflow:
 
+```bash
+docker-compose airflow-init
+```
 
+Then, build and start the Airflow containers:
 
-`make manage_buckets empty=False repo=Salesforce/wikitext dataset_name=wikitext-2-raw-v1 bucket_name=raw`
+```bash
+docker compose up --build
+```
+
+## 3. API Usage with cURL
+Interact with the services using the following cURL commands:
+
+### Upload a File to Raw Bucket
+```bash
+curl -X PUT --data-binary @data.txt "http://localhost:4566/raw/data.txt"
+```
+
+### List Files in a Bucket
+```bash
+curl "http://localhost:4566/raw"
+```
+
+### Download a File from a Bucket
+```bash
+curl "http://localhost:4566/raw/data.txt" -o "downloaded_data.txt"
+```
+## 4. Accessing Docker Containers to Inspect Buckets
+
+To access the Flask application container and inspect S3 bucket contents, execute the following:
+
+```bash
+docker exec -it tp3-datalake-flask-app-1 /bin/bash
+```
+
+Once inside the container, you can use AWS CLI to list or inspect files:
+
+````bash
+aws --endpoint-url=http://localstack:4566 s3 ls s3://raw
+aws --endpoint-url=http://localstack:4566 s3 ls s3://staging
+aws --endpoint-url=http://localstack:4566 s3 ls s3://curated
+````
+## 5. Notes
+- Ensure LocalStack is running before performing AWS CLI operations.
+- MongoDB and MySQL should be accessible and properly configured.
+- Modify any endpoint URLs if different from defaults.
+- Logs and debug information can be found in the corresponding Docker container logs.
+
+---
+
+This guide ensures a smooth setup and provides essential cURL commands for interacting with the system. For advanced configurations, please refer to the respective service documentation.

@@ -1,0 +1,19 @@
+[2025-03-12T13:24:54.804+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-12T13:24:54.834+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_lake_pipeline.transform_staging_to_curated manual__2025-03-12T13:24:50.960714+00:00 [queued]>
+[2025-03-12T13:24:54.845+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_lake_pipeline.transform_staging_to_curated manual__2025-03-12T13:24:50.960714+00:00 [queued]>
+[2025-03-12T13:24:54.846+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-12T13:24:54.875+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): transform_staging_to_curated> on 2025-03-12 13:24:50.960714+00:00
+[2025-03-12T13:24:54.884+0000] {standard_task_runner.py:72} INFO - Started process 202 to run task
+[2025-03-12T13:24:54.896+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_lake_pipeline', 'transform_staging_to_curated', 'manual__2025-03-12T13:24:50.960714+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline_dag.py', '--cfg-path', '/tmp/tmplby0tgco']
+[2025-03-12T13:24:54.907+0000] {standard_task_runner.py:105} INFO - Job 33: Subtask transform_staging_to_curated
+[2025-03-12T13:24:54.963+0000] {logging_mixin.py:190} WARNING - /usr/local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-12T13:24:55.054+0000] {task_command.py:467} INFO - Running <TaskInstance: data_lake_pipeline.transform_staging_to_curated manual__2025-03-12T13:24:50.960714+00:00 [running]> on host ***-scheduler
+[2025-03-12T13:24:55.379+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_lake_pipeline' AIRFLOW_CTX_TASK_ID='transform_staging_to_curated' AIRFLOW_CTX_EXECUTION_DATE='2025-03-12T13:24:50.960714+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-12T13:24:50.960714+00:00'
+[2025-03-12T13:24:55.381+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-12T13:24:55.418+0000] {aws_s3_repository.py:119} INFO - Downloading data from staging
+[2025-03-12T13:24:55.419+0000] {logging_mixin.py:190} INFO - Uploading data to curated
+[2025-03-12T13:24:55.420+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-12T13:24:55.439+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-12T13:24:55.440+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_lake_pipeline, task_id=transform_staging_to_curated, run_id=manual__2025-03-12T13:24:50.960714+00:00, execution_date=20250312T132450, start_date=20250312T132454, end_date=20250312T132455
+[2025-03-12T13:24:55.524+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-12T13:24:55.549+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

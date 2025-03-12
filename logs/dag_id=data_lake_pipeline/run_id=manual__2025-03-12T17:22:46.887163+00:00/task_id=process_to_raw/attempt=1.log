@@ -1,0 +1,866 @@
+[2025-03-12T17:22:51.617+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-12T17:22:51.655+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T17:22:46.887163+00:00 [queued]>
+[2025-03-12T17:22:51.664+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T17:22:46.887163+00:00 [queued]>
+[2025-03-12T17:22:51.665+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-12T17:22:51.690+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): process_to_raw> on 2025-03-12 17:22:46.887163+00:00
+[2025-03-12T17:22:51.700+0000] {standard_task_runner.py:72} INFO - Started process 716 to run task
+[2025-03-12T17:22:51.709+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_lake_pipeline', 'process_to_raw', 'manual__2025-03-12T17:22:46.887163+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline_dag.py', '--cfg-path', '/tmp/tmpo2q_fbjz']
+[2025-03-12T17:22:51.712+0000] {standard_task_runner.py:105} INFO - Job 29: Subtask process_to_raw
+[2025-03-12T17:22:51.739+0000] {logging_mixin.py:190} WARNING - /usr/local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-12T17:22:51.795+0000] {task_command.py:467} INFO - Running <TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T17:22:46.887163+00:00 [running]> on host ***-scheduler
+[2025-03-12T17:22:51.912+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_lake_pipeline' AIRFLOW_CTX_TASK_ID='process_to_raw' AIRFLOW_CTX_EXECUTION_DATE='2025-03-12T17:22:46.887163+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-12T17:22:46.887163+00:00'
+[2025-03-12T17:22:51.915+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-12T17:22:51.930+0000] {manage_buckets.py:22} INFO - [Data manager] Downloading data from HuggingFace...
+[2025-03-12T17:22:56.274+0000] {logging_mixin.py:190} WARNING - Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]
+[2025-03-12T17:22:56.292+0000] {logging_mixin.py:190} WARNING - Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 254129.56 examples/s]
+[2025-03-12T17:22:56.292+0000] {logging_mixin.py:190} WARNING - Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]
+[2025-03-12T17:22:56.356+0000] {logging_mixin.py:190} WARNING - Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 584511.31 examples/s]
+[2025-03-12T17:22:56.357+0000] {logging_mixin.py:190} WARNING - Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]
+[2025-03-12T17:22:56.368+0000] {logging_mixin.py:190} WARNING - Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 381983.80 examples/s]
+[2025-03-12T17:22:56.380+0000] {manage_buckets.py:25} INFO - [Data manager] Data successfully downloaded.
+[2025-03-12T17:22:56.380+0000] {manage_buckets.py:28} INFO - [Data manager] Transferring data to S3 bucket...
+[2025-03-12T17:22:56.381+0000] {aws_s3_repository.py:79} INFO - [AWS S3] 🚀 Uploading into raw ...
+[2025-03-12T17:22:56.381+0000] {aws_s3_repository.py:82} INFO - [AWS S3] Transferring train data...
+[2025-03-12T17:22:56.381+0000] {aws_s3_repository.py:83} INFO - [AWS S3] split_data: Dataset({
+    features: ['text'],
+    num_rows: 36718
+})
+[2025-03-12T17:22:56.460+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.460+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_0.txt
+[2025-03-12T17:22:56.483+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = Valkyria Chronicles III = 
+
+[2025-03-12T17:22:56.484+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = Valkyria Chronicl... to train/train_1.txt
+[2025-03-12T17:22:56.491+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.507+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_2.txt
+[2025-03-12T17:22:56.553+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Senjō no Valkyria 3 : Unrecorded Chronicles ( Japanese : 戦場のヴァルキュリア3 , lit . Valkyria of the Battlefield 3 ) , commonly referred to as Valkyria Chronicles III outside Japan , is a tactical role @-@ playing video game developed by Sega and Media.Vision for the PlayStation Portable . Released in January 2011 in Japan , it is the third game in the Valkyria series . Employing the same fusion of tactical and real @-@ time gameplay as its predecessors , the story runs parallel to the first game and follows the " Nameless " , a penal military unit serving the nation of Gallia during the Second Europan War who perform secret black operations and are pitted against the Imperial unit " Calamaty Raven " . 
+
+[2025-03-12T17:22:56.554+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Senjō no Valkyria 3... to train/train_3.txt
+[2025-03-12T17:22:56.560+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The game began development in 2010 , carrying over a large portion of the work done on Valkyria Chronicles II . While it retained the standard features of the series , it also underwent multiple adjustments , such as making the game more forgiving for series newcomers . Character designer Raita Honjou and composer Hitoshi Sakimoto both returned from previous entries , along with Valkyria Chronicles II director Takeshi Ozawa . A large team of writers handled the script . The game 's opening theme was sung by May 'n . 
+
+[2025-03-12T17:22:56.561+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The game began deve... to train/train_4.txt
+[2025-03-12T17:22:56.566+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  It met with positive sales in Japan , and was praised by both Japanese and western critics . After release , it received downloadable content , along with an expanded edition in November of that year . It was also adapted into manga and an original video animation series . Due to low sales of Valkyria Chronicles II , Valkyria Chronicles III was not localized , but a fan translation compatible with the game 's expanded edition was released in 2014 . Media.Vision would return to the franchise with the development of Valkyria : Azure Revolution for the PlayStation 4 . 
+
+[2025-03-12T17:22:56.567+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  It met with positiv... to train/train_5.txt
+[2025-03-12T17:22:56.574+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.575+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_6.txt
+[2025-03-12T17:22:56.620+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Gameplay = = 
+
+[2025-03-12T17:22:56.620+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Gameplay = = 
+... to train/train_7.txt
+[2025-03-12T17:22:56.626+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.626+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_8.txt
+[2025-03-12T17:22:56.671+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  As with previous Valkyira Chronicles games , Valkyria Chronicles III is a tactical role @-@ playing game where players take control of a military unit and take part in missions against enemy forces . Stories are told through comic book @-@ like panels with animated character portraits , with characters speaking partially through voiced speech bubbles and partially through unvoiced text . The player progresses through a series of linear missions , gradually unlocked as maps that can be freely scanned through and replayed as they are unlocked . The route to each story location on the map varies depending on an individual player 's approach : when one option is selected , the other is sealed off to the player . Outside missions , the player characters rest in a camp , where units can be customized and character growth occurs . Alongside the main story missions are character @-@ specific sub missions relating to different squad members . After the game 's completion , additional episodes are unlocked , some of them having a higher difficulty than those found in the rest of the game . There are also love simulation elements related to the game 's two main heroines , although they take a very minor role . 
+
+[2025-03-12T17:22:56.671+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  As with previous Va... to train/train_9.txt
+[2025-03-12T17:22:56.677+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The game 's battle system , the BliTZ system , is carried over directly from Valkyira Chronicles . During missions , players select each unit using a top @-@ down perspective of the battlefield map : once a character is selected , the player moves the character around the battlefield in third @-@ person . A character can only act once per @-@ turn , but characters can be granted multiple turns at the expense of other characters ' turns . Each character has a field and distance of movement limited by their Action Gauge . Up to nine characters can be assigned to a single mission . During gameplay , characters will call out if something happens to them , such as their health points ( HP ) getting low or being knocked out by enemy attacks . Each character has specific " Potentials " , skills unique to each character . They are divided into " Personal Potential " , which are innate skills that remain unaltered unless otherwise dictated by the story and can either help or impede a character , and " Battle Potentials " , which are grown throughout the game and always grant boons to a character . To learn Battle Potentials , each character has a unique " Masters Table " , a grid @-@ based skill table that can be used to acquire and link different skills . Characters also have Special Abilities that grant them temporary boosts on the battlefield : Kurt can activate " Direct Command " and move around the battlefield without depleting his Action Point gauge , the character Reila can shift into her " Valkyria Form " and become invincible , while Imca can target multiple enemy units with her heavy weapon . 
+
+[2025-03-12T17:22:56.678+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The game 's battle ... to train/train_10.txt
+[2025-03-12T17:22:56.683+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Troops are divided into five classes : Scouts , Shocktroopers , Engineers , Lancers and Armored Soldier . Troopers can switch classes by changing their assigned weapon . Changing class does not greatly affect the stats gained while in a previous class . With victory in battle , experience points are awarded to the squad , which are distributed into five different attributes shared by the entire squad , a feature differing from early games ' method of distributing to different unit types . 
+
+[2025-03-12T17:22:56.683+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Troops are divided ... to train/train_11.txt
+[2025-03-12T17:22:56.690+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.690+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_12.txt
+[2025-03-12T17:22:56.735+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Plot = = 
+
+[2025-03-12T17:22:56.736+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Plot = = 
+... to train/train_13.txt
+[2025-03-12T17:22:56.742+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.743+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_14.txt
+[2025-03-12T17:22:56.787+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The game takes place during the Second Europan War . Gallian Army Squad 422 , also known as " The Nameless " , are a penal military unit composed of criminals , foreign deserters , and military offenders whose real names are erased from the records and thereon officially referred to by numbers . Ordered by the Gallian military to perform the most dangerous missions that the Regular Army and Militia will not do , they are nevertheless up to the task , exemplified by their motto , Altaha Abilia , meaning " Always Ready . " The three main characters are No.7 Kurt Irving , an army officer falsely accused of treason who wishes to redeem himself ; Ace No.1 Imca , a female Darcsen heavy weapons specialist who seeks revenge against the Valkyria who destroyed her home ; and No.13 Riela Marcellis , a seemingly jinxed young woman who is unknowingly a descendant of the Valkyria . Together with their fellow squad members , these three are tasked to fight against a mysterious Imperial unit known as Calamity Raven , consisting of mostly Darcsen soldiers . 
+
+[2025-03-12T17:22:56.788+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The game takes plac... to train/train_15.txt
+[2025-03-12T17:22:56.795+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  As the Nameless officially do not exist , the upper echelons of the Gallian Army exploit the concept of plausible deniability in order to send them on missions that would otherwise make Gallia lose face in the war . While at times this works to their advantage , such as a successful incursion into Imperial territory , other orders cause certain members of the 422nd great distress . One such member , Gusurg , becomes so enraged that he abandons his post and defects into the ranks of Calamity Raven , attached to the ideal of Darcsen independence proposed by their leader , Dahau . At the same time , elements within Gallian Army Command move to erase the Nameless in order to protect their own interests . Hounded by both allies and enemies , and combined with the presence of a traitor within their ranks , the 422nd desperately move to keep themselves alive while at the same time fight to help the Gallian war effort . This continues until the Nameless 's commanding officer , Ramsey Crowe , who had been kept under house arrest , is escorted to the capital city of Randgriz in order to present evidence exonerating the weary soldiers and expose the real traitor , the Gallian General that had accused Kurt of Treason . 
+
+[2025-03-12T17:22:56.796+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  As the Nameless off... to train/train_16.txt
+[2025-03-12T17:22:56.802+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Partly due to these events , and partly due to the major losses in manpower Gallia suffers towards the end of the war with the Empire , the Nameless are offered a formal position as a squad in the Gallian Army rather than serve as an anonymous shadow force . This is short @-@ lived , however , as following Maximilian 's defeat , Dahau and Calamity Raven move to activate an ancient Valkyrian super weapon within the Empire , kept secret by their benefactor . Without the support of Maximilian or the chance to prove themselves in the war with Gallia , it is Dahau 's last trump card in creating a new Darcsen nation . As an armed Gallian force invading the Empire just following the two nations ' cease @-@ fire would certainly wreck their newfound peace , Kurt decides to once again make his squad the Nameless , asking Crowe to list himself and all under his command as killed @-@ in @-@ action . Now owing allegiance to none other than themselves , the 422nd confronts Dahau and destroys the Valkyrian weapon . Each member then goes their separate ways in order to begin their lives anew . 
+
+[2025-03-12T17:22:56.803+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Partly due to these... to train/train_17.txt
+[2025-03-12T17:22:56.810+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.811+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_18.txt
+[2025-03-12T17:22:56.856+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Development = = 
+
+[2025-03-12T17:22:56.857+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Development = =... to train/train_19.txt
+[2025-03-12T17:22:56.867+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.868+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_20.txt
+[2025-03-12T17:22:56.914+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Concept work for Valkyria Chronicles III began after development finished on Valkyria Chronicles II in early 2010 , with full development beginning shortly after this . The director of Valkyria Chronicles II , Takeshi Ozawa , returned to that role for Valkyria Chronicles III . Development work took approximately one year . After the release of Valkyria Chronicles II , the staff took a look at both the popular response for the game and what they wanted to do next for the series . Like its predecessor , Valkyria Chronicles III was developed for PlayStation Portable : this was due to the team wanting to refine the mechanics created for Valkyria Chronicles II , and they had not come up with the " revolutionary " idea that would warrant a new entry for the PlayStation 3 . Speaking in an interview , it was stated that the development team considered Valkyria Chronicles III to be the series ' first true sequel : while Valkyria Chronicles II had required a large amount of trial and error during development due to the platform move , the third game gave them a chance to improve upon the best parts of Valkyria Chronicles II due to being on the same platform . In addition to Sega staff from the previous games , development work was also handled by Media.Vision. The original scenario was written Kazuki Yamanobe , while the script was written by Hiroyuki Fujii , Koichi Majima , Kishiko Miyagi , Seiki Nagakawa and Takayuki Shouji . Its story was darker and more somber than that of its predecessor . 
+
+[2025-03-12T17:22:56.915+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Concept work for Va... to train/train_21.txt
+[2025-03-12T17:22:56.927+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The majority of material created for previous games , such as the BLiTZ system and the design of maps , was carried over . Alongside this , improvements were made to the game 's graphics and some elements were expanded , such as map layouts , mission structure , and the number of playable units per mission . A part of this upgrade involved creating unique polygon models for each character 's body . In order to achieve this , the cooperative elements incorporated into the second game were removed , as they took up a large portion of memory space needed for the improvements . They also adjusted the difficulty settings and ease of play so they could appeal to new players while retaining the essential components of the series ' gameplay . The newer systems were decided upon early in development . The character designs were done by Raita Honjou , who had worked on the previous Valkyria Chronicles games . When creating the Nameless Squad , Honjou was faced with the same problem he had had during the first game : the military uniforms essentially destroyed character individuality , despite him needing to create unique characters the player could identify while maintaining a sense of reality within the Valkyria Chronicles world . The main color of the Nameless was black . As with the previous Valkyria games , Valkyria Chronicles III used the CANVAS graphics engine . The anime opening was produced by Production I.G. 
+
+[2025-03-12T17:22:56.928+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The majority of mat... to train/train_22.txt
+[2025-03-12T17:22:56.936+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.937+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_23.txt
+[2025-03-12T17:22:56.983+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Music = = = 
+
+[2025-03-12T17:22:56.985+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Music = = = 
+... to train/train_24.txt
+[2025-03-12T17:22:56.995+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:56.996+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_25.txt
+[2025-03-12T17:22:57.046+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The music was composed by Hitoshi Sakimoto , who had also worked on the previous Valkyria Chronicles games . When he originally heard about the project , he thought it would be a light tone similar to other Valkyria Chronicles games , but found the themes much darker than expected . An early theme he designed around his original vision of the project was rejected . He redid the main theme about seven times through the music production due to this need to reassess the game . The main theme was initially recorded using orchestra , then Sakimoto removed elements such as the guitar and bass , then adjusted the theme using a synthesizer before redoing segments such as the guitar piece on their own before incorporating them into the theme . The rejected main theme was used as a hopeful tune that played during the game 's ending . The battle themes were designed around the concept of a " modern battle " divorced from a fantasy scenario by using modern musical instruments , constructed to create a sense of atonality . While Sakimoto was most used to working with synthesized music , he felt that he needed to incorporate live instruments such as orchestra and guitar . The guitar was played by Mitsuhiro Ohta , who also arranged several of the later tracks . The game 's opening theme song , " If You Wish for ... " ( もしも君が願うのなら , Moshimo Kimi ga Negauno Nara ) , was sung by Japanese singer May 'n . Its theme was the reason soldiers fought , in particular their wish to protect what was precious to them rather than a sense of responsibility or duty . Its lyrics were written by Seiko Fujibayashi , who had worked on May 'n on previous singles . 
+
+[2025-03-12T17:22:57.047+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The music was compo... to train/train_26.txt
+[2025-03-12T17:22:57.059+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.060+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_27.txt
+[2025-03-12T17:22:57.105+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Release = = = 
+
+[2025-03-12T17:22:57.106+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Release = = =... to train/train_28.txt
+[2025-03-12T17:22:57.115+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.116+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_29.txt
+[2025-03-12T17:22:57.162+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In September 2010 , a teaser website was revealed by Sega , hinting at a new Valkyria Chronicles game . In its September issue , Famitsu listed that Senjō no Valkyria 3 would be arriving on the PlayStation Portable . Its first public appearance was at the 2010 Tokyo Game Show ( TGS ) , where a demo was made available for journalists and attendees . During the publicity , story details were kept scant so as not to spoil too much for potential players , along with some of its content still being in flux at the time of its reveal . To promote the game and detail the story leading into the game 's events , an episodic Flash visual novel written by Fujii began release in January 2011 . The game was released January 27 , 2011 . During an interview , the development team said that the game had the capacity for downloadable content ( DLC ) , but that no plans were finalized . Multiple DLC maps , featuring additional missions and recruitable characters , were released between February and April 2011 . An expanded edition of the game , Valkyria Chronicles III Extra Edition , released on November 23 , 2011 . Packaged and sold at a lower price than the original , Extra Edition game with seven additional episodes : three new , three chosen by staff from the game 's DLC , and one made available as a pre @-@ order bonus . People who also owned the original game could transfer their save data between versions . 
+
+[2025-03-12T17:22:57.163+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In September 2010 ,... to train/train_30.txt
+[2025-03-12T17:22:57.173+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Unlike its two predecessors , Valkyria Chronicles III was not released in the west . According to Sega , this was due to poor sales of Valkyria Chronicles II and the general unpopularity of the PSP in the west . An unofficial fan translation patch began development in February 2012 : players with a copy of Valkyria Chronicles III could download and apply the patch , which translated the game 's text into English . Compatible with the Extra Edition , the patch was released in January 2014 . 
+
+[2025-03-12T17:22:57.174+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Unlike its two pred... to train/train_31.txt
+[2025-03-12T17:22:57.182+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.183+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_32.txt
+[2025-03-12T17:22:57.229+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Reception = = 
+
+[2025-03-12T17:22:57.229+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Reception = = 
+... to train/train_33.txt
+[2025-03-12T17:22:57.235+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.236+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_34.txt
+[2025-03-12T17:22:57.280+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  On its day of release in Japan , Valkyria Chronicles III topped both platform @-@ exclusive and multi @-@ platform sales charts . By early February , the game sold 102 @,@ 779 units , coming in second overall to The Last Story for the Wii . By the end of the year , the game had sold just over 152 @,@ 500 units . 
+
+[2025-03-12T17:22:57.280+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  On its day of relea... to train/train_35.txt
+[2025-03-12T17:22:57.286+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Famitsu enjoyed the story , and were particularly pleased with the improvements to gameplay . Japanese gaming site Game Watch Impress , despite negatively noting its pacing and elements recycled from previous games , was generally positive about its story and characters , and found its gameplay entertaining despite off @-@ putting difficulty spikes . 4Gamer.net writer Naohiko Misuosame , in a " Play Test " article based on the game 's PSN demo , felt that Valkyria Chronicles III provided a " profound feeling of closure " for the Valkyria Chronicles series . He praised its gameplay despite annoying limitations to aspects such as special abilities , and positively noted its shift in story to a tone similar to the first game . 
+
+[2025-03-12T17:22:57.287+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Famitsu enjoyed the... to train/train_36.txt
+[2025-03-12T17:22:57.292+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  PlayStation Official Magazine - UK praised the story 's blurring of Gallia 's moral standing , art style , and most points about its gameplay , positively noting the latter for both its continued quality and the tweaks to balance and content . Its one major criticism were multiple difficulty spikes , something that had affected the previous games . Heath Hindman of gaming website PlayStation Lifestyle praised the addition of non @-@ linear elements and improvements or removal of mechanics from Valkyria Chronicles II in addition to praising the returning gameplay style of previous games . He also positively noted the story 's serious tone . Points criticized in the review were recycled elements , awkward cutscenes that seemed to include all characters in a scene for no good reason , pacing issues , and occasional problems with the game 's AI . 
+
+[2025-03-12T17:22:57.293+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  PlayStation Officia... to train/train_37.txt
+[2025-03-12T17:22:57.299+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In a preview of the TGS demo , Ryan Geddes of IGN was left excited as to where the game would go after completing the demo , along with enjoying the improved visuals over Valkyria Chronicles II . Kotaku 's Richard Eisenbeis was highly positive about the game , citing is story as a return to form after Valkyria Chronicles II and its gameplay being the best in the series . His main criticisms were its length and gameplay repetition , along with expressing regret that it would not be localized . 
+
+[2025-03-12T17:22:57.300+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In a preview of the... to train/train_38.txt
+[2025-03-12T17:22:57.305+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.306+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_39.txt
+[2025-03-12T17:22:57.350+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Legacy = = 
+
+[2025-03-12T17:22:57.351+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Legacy = = 
+... to train/train_40.txt
+[2025-03-12T17:22:57.359+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.359+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_41.txt
+[2025-03-12T17:22:57.404+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Kurt and Riela were featured in the Nintendo 3DS crossover Project X Zone , representing the Valkyria series . Media.Vision would return to the series to develop Valkyria : Azure Revolution , with Ozawa returning as director . Azure Revolution is a role @-@ playing video game for the PlayStation 4 that forms the beginning of a new series within the Valkyria franchise . 
+
+[2025-03-12T17:22:57.405+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Kurt and Riela were... to train/train_42.txt
+[2025-03-12T17:22:57.413+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.414+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_43.txt
+[2025-03-12T17:22:57.459+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Adaptations = = = 
+
+[2025-03-12T17:22:57.460+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Adaptations =... to train/train_44.txt
+[2025-03-12T17:22:57.467+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.468+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_45.txt
+[2025-03-12T17:22:57.514+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Valkyria Chronicles 3 was adapted into a two @-@ episode original video animation series in the same year of its release . Titled Senjō no Valkyria 3 : Taga Tame no Jūsō ( 戦場のヴァルキュリア３ 誰がための銃瘡 , lit . Valkyria of the Battlefield 3 : The Wound Taken for Someone 's Sake ) , it was originally released through PlayStation Network and Qriocity between April and May 2011 . The initially @-@ planned release and availability period needed to be extended due to a stoppage to PSN during the early summer of that year . It later released for DVD on June 29 and August 31 , 2011 , with separate " Black " and " Blue " editions being available for purchase . The anime is set during the latter half of Valkyria Chronicles III , detailing a mission by the Nameless against their Imperial rivals Calamity Raven . The anime was first announced in November 2010 . It was developed by A @-@ 1 Pictures , produced by Shinji Motoyama , directed by Nobuhiro Kondō , and written by Hiroshi Ōnogi . Sakimoto 's music for the game was used in the anime . 
+
+[2025-03-12T17:22:57.514+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Valkyria Chronicles... to train/train_46.txt
+[2025-03-12T17:22:57.524+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The anime 's title was inspired by the principle purpose of the Nameless : to suffer in battle for the goals of others . A subtitle attached to the project during development was " The Road to Kubinka " , which referenced the Kubinka Tank Museum in Moscow . The game 's main theme was how the characters regained their sense of self when stripped of their names and identities , along with general themes focused on war and its consequences . While making the anime , the production team were told by Sega to make it as realistic as possible , with the consequence that the team did extensive research into aspects such as what happened when vehicles like tanks were overturned or damaged . Due to it being along the same timeline as the original game and its television anime adaptation , the cast of Valkyria Chronicles could make appearances , which pleased the team . The opening theme , " Akari ( Light ) -Tomoshibi- " ( 灯 @-@ TOMOSHIBI- ) , was sung by Japanese singer Faylan . The ending theme , " Someday the Flowers of Light Will Bloom " ( いつか咲く光の花 , Itsuka Saku Hikari no Hana ) , was sung by Minami Kuribayashi . Both songs ' lyrics were written by their respective artists . 
+
+[2025-03-12T17:22:57.525+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The anime 's title ... to train/train_47.txt
+[2025-03-12T17:22:57.532+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Two manga adaptations were produced , following each of the game 's main female protagonists Imca and Riela . They were Senjō no Valkyria 3 : Namo naki Chikai no Hana ( 戦場のヴァルキュリア3 名もなき誓いの花 , lit . Valkyria of the Battlefield 3 : The Flower of the Nameless Oath ) , illustrated by Naoyuki Fujisawa and eventually released in two volumes after being serialized in Dengeki Maoh between 2011 and 2012 ; and Senjō no Valkyria 3 : -Akaki Unmei no Ikusa Otome- ( 戦場のヴァルキュリア3 -赤き運命の戦乙女- , lit . Valkyria of the Battlefield 3 -The Valkyrie of the Crimson Fate ) , illustrated by Mizuki Tsuge and eventually released in a single volume by Kadokawa Shoten in 2012 . 
+
+[2025-03-12T17:22:57.533+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Two manga adaptatio... to train/train_48.txt
+[2025-03-12T17:22:57.539+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.539+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_49.txt
+[2025-03-12T17:22:57.585+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.586+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_50.txt
+[2025-03-12T17:22:57.633+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = Tower Building of the Little Rock Arsenal = 
+
+[2025-03-12T17:22:57.633+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = Tower Building of... to train/train_51.txt
+[2025-03-12T17:22:57.642+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.643+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_52.txt
+[2025-03-12T17:22:57.690+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The Tower Building of the Little Rock Arsenal , also known as U.S. Arsenal Building , is a building located in MacArthur Park in downtown Little Rock , Arkansas . Built in 1840 , it was part of Little Rock 's first military installation . Since its decommissioning , The Tower Building has housed two museums . It was home to the Arkansas Museum of Natural History and Antiquities from 1942 to 1997 and the MacArthur Museum of Arkansas Military History since 2001 . It has also been the headquarters of the Little Rock Æsthetic Club since 1894 . 
+
+[2025-03-12T17:22:57.691+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The Tower Building ... to train/train_53.txt
+[2025-03-12T17:22:57.703+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The building receives its name from its distinct octagonal tower . Besides being the last remaining structure of the original Little Rock Arsenal and one of the oldest buildings in central Arkansas , it was also the birthplace of General Douglas MacArthur , who became the supreme commander of US forces in the South Pacific during World War II . It was also the starting place of the Camden Expedition . In 2011 it was named as one of the top 10 attractions in the state of Arkansas by Arkansas.com. 
+
+[2025-03-12T17:22:57.704+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The building receiv... to train/train_54.txt
+[2025-03-12T17:22:57.713+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.713+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_55.txt
+[2025-03-12T17:22:57.759+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Construction = = 
+
+[2025-03-12T17:22:57.760+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Construction = ... to train/train_56.txt
+[2025-03-12T17:22:57.766+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.767+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_57.txt
+[2025-03-12T17:22:57.813+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The arsenal was constructed at the request of Governor James Sevier Conway in response to the perceived dangers of frontier life and fears of the many Native Americans who were passing through the state on their way to the newly established Oklahoma Territory . Thirty @-@ six acres were appropriated on the outskirts of Little Rock by Major Robert B. Lee of the U.S. Army . The land had been previously used as a racetrack by the local jockey club . John Wormley Walker , a builder for the Federal Government , supervised the construction . Originally $ 14 @,@ 000 was allocated for the construction of the arsenal , but proved inadequate . The budget was later increased to $ 30 @,@ 000 . Work began on the Tower Building in 1840 , and it was the first permanent structure of the arsenal to be built . Being originally constructed to store ammunition , the building was designed with 3 @-@ foot @-@ thick ( 0 @.@ 91 m ) exterior walls . The original plans called for it to be built of stone , however , masonry was used instead . The Arkansas Gazette referred to the structure as " A splendid specimen of masonry " . 
+
+[2025-03-12T17:22:57.814+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The arsenal was con... to train/train_58.txt
+[2025-03-12T17:22:57.826+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.826+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_59.txt
+[2025-03-12T17:22:57.873+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Civil War = = 
+
+[2025-03-12T17:22:57.873+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Civil War = = 
+... to train/train_60.txt
+[2025-03-12T17:22:57.882+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:57.882+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_61.txt
+[2025-03-12T17:22:57.929+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  For several years the arsenal , which was owned by the federal government , served as a simple arms depot and was staffed with only a handful of soldiers . But in November 1860 , with the American Civil War on the horizon , a company of the Second United States Artillery , consisting of sixty @-@ five men , was transferred to Little Rock under the command of Captain James Totten . On January 15 , 1861 , the state legislature decided to hold a referendum to determine if a state convention should be held to consider the issue of secession and to elect delegates to such a convention . It was planned for February 18 ; however , events at the arsenal , would not wait . On January 28 , then Governor Henry Massey Rector informed Captain Totten that he and his soldiers would be " permitted to remain in the possession of the Federal officers until the State , by authority of the people , shall have determined to sever their connection with the General Government , " Totten responded to this by telling the Governor that his orders came from the United States Government and began a desperate but ultimately futile dispatch of letters and telegrams asking for reinforcements , although rumors were widely spread that they were already coming . The first telegraph wire to span between Little Rock and Memphis had recently been completed . Local attorney John M Harrel was asked to compose the first telegraph dispatched from Arkansas 's capital . In his message , Harrel reported unconfirmed rumors that more federal troops had been sent to reinforce the Little Rock Arsenal . 
+
+[2025-03-12T17:22:57.930+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  For several years t... to train/train_62.txt
+[2025-03-12T17:22:57.939+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The United States troops at the outposts of the western frontier of the state and in the Indian nation have all been recalled from winter quarters to reinforce the garrison at Fort Smith . The garrison at Fort Smith had been previously transferred to the United States Arsenal in this city ( Little Rock ) . The arsenal is one of the richest depositories of military stores in the United States and is supposed to be the ultimate destination of the tropps [ sic ] ordered from the frontier . 
+
+[2025-03-12T17:22:57.940+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The United States t... to train/train_63.txt
+[2025-03-12T17:22:57.947+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  -John M Harrel Telegram , January 31 , 1861 
+
+[2025-03-12T17:22:57.948+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  -John M Harrel Tele... to train/train_64.txt
+[2025-03-12T17:22:57.955+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The item was intended simply as a piece of news , but telegraph lines quickly spread the news throughout the state , fueling procession sentiment . The rumor was interpreted by some Arkansans as a call from the governor to assemble to help expel the federal troops from the arsenal . By February 5 , six militia units , consisting of 1 @,@ 000 men , with a guarantee that the numbers could be increased to 5 @,@ 000 if the situations deemed it necessary , had assembled in Little Rock . Governor Rector vehemently denied ordering the troops to assemble or giving any order at all in connection with the troops . Faced with the fact that the military had assembled believing they were following his orders and the consensus of the citizens of Little Rock against any armed conflict between the civilian army and federal troops , Governor Rector was forced to take control of the situation . On February 6 , he sent a formal demand for surrender of the arsenal to Captain Totten , 
+
+[2025-03-12T17:22:57.956+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The item was intend... to train/train_65.txt
+[2025-03-12T17:22:57.963+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  This movement is prompted by the feeling that pervades the citizens of this State that in the present emergency the arms and munitions of war in the Arsenal should be under the control of the State authorities , in order to their security . This movement , although not authorized by me , has assumed such an aspect that it becomes my duty , as the executive of this Sate , to interpose my official authority to prevent a collision between the people of the State and the Federal troops under your command . I therefore demand in the name of the State the delivery of the possession of the Arsenal and munitions of war under your charge to the State authorities , to be held subject to the action of the convention to be held on the 4th of March next . 
+
+[2025-03-12T17:22:57.963+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  This movement is pr... to train/train_66.txt
+[2025-03-12T17:22:57.970+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Perhaps because Abraham Lincoln had not yet been inaugurated as President , Captain Totten received no instructions from his superiors and was forced to withdraw his troops . He agreed to surrender the arsenal as long as the governor agreed to three provisions : 
+
+[2025-03-12T17:22:57.970+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Perhaps because Abr... to train/train_67.txt
+[2025-03-12T17:22:57.978+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The governor would take possession of the arsenal in the name of the United States . 
+
+[2025-03-12T17:22:57.979+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The governor would ... to train/train_68.txt
+[2025-03-12T17:22:57.986+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The soldiers would be allowed safe passage in any direction carrying any personal and public property besides munitions of war . 
+
+[2025-03-12T17:22:57.986+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The soldiers would ... to train/train_69.txt
+[2025-03-12T17:22:57.994+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The soldiers would be allowed to march away as men leaving under orders , not as conquered and surrendering soldiers . 
+
+[2025-03-12T17:22:57.994+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The soldiers would ... to train/train_70.txt
+[2025-03-12T17:22:58.001+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  On the morning of February 8 , 1861 , Rector and Totten signed an agreement placing the arsenal in the hands of state officials . That afternoon , the citizen militia marched to the arsenal with Governor Rector at its head . All of the federal troops had left at this point , except Totten who had stayed behind to listen to the Governor 's speech and to hand the arsenal over in person . 
+
+[2025-03-12T17:22:58.002+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  On the morning of F... to train/train_71.txt
+[2025-03-12T17:22:58.009+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The Little Rock Arsenal was classified in 1860 as an " arsenal of deposit , " meaning that it was simply a warehouse for the storage of weapons intended for the use of the state militia in times of crisis . Thus there were no substantial operations for ordnance fabrication or repairs , nor for the manufacture of cartridges at the time the Arsenal fell into State hands . Most of these operations were started from scratch through the efforts of the Arkansas Military Board . 
+
+[2025-03-12T17:22:58.010+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The Little Rock Ars... to train/train_72.txt
+[2025-03-12T17:22:58.017+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Inside the Little Rock Arsenal after its seizure in February , 1861 , the Confederates inventoried some 10 @,@ 247 weapons , 250 @,@ 000 musket cartridges , and 520 @,@ 000 percussion caps , as well as the four bronze cannon of Totten 's battery . Long arms in the Arsenal 's inventory consisted of : 
+
+[2025-03-12T17:22:58.018+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Inside the Little R... to train/train_73.txt
+[2025-03-12T17:22:58.024+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1822 .69 cal ( flintlock ) 5 @,@ 625 
+
+[2025-03-12T17:22:58.025+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1822 .69 cal ( fli... to train/train_74.txt
+[2025-03-12T17:22:58.033+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1822 .69 cal ( percussion @-@ converted ) 53 
+
+[2025-03-12T17:22:58.033+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1822 .69 cal ( per... to train/train_75.txt
+[2025-03-12T17:22:58.040+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1842 .69 cal smoothbore ( percussion ) 357 
+
+[2025-03-12T17:22:58.041+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1842 .69 cal smoot... to train/train_76.txt
+[2025-03-12T17:22:58.051+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1855 .58 cal rifle @-@ muskets 900 
+
+[2025-03-12T17:22:58.051+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1855 .58 cal rifle... to train/train_77.txt
+[2025-03-12T17:22:58.061+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1817 common rifles 125 
+
+[2025-03-12T17:22:58.062+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1817 common rifles... to train/train_78.txt
+[2025-03-12T17:22:58.070+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1841 rifle ( " Mississippi Rifle " ) 54 
+
+[2025-03-12T17:22:58.088+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1841 rifle ( " Mis... to train/train_79.txt
+[2025-03-12T17:22:58.095+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M1847 musketoon 2 
+
+[2025-03-12T17:22:58.096+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M1847 musketoon 2 
+... to train/train_80.txt
+[2025-03-12T17:22:58.102+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Hall 's carbines 267 
+
+[2025-03-12T17:22:58.103+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Hall 's carbines 26... to train/train_81.txt
+[2025-03-12T17:22:58.109+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Hall 's rifles ( flintlock ) 2 @,@ 864 
+
+[2025-03-12T17:22:58.109+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Hall 's rifles ( fl... to train/train_82.txt
+[2025-03-12T17:22:58.116+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Total 10 @,@ 247 
+
+[2025-03-12T17:22:58.117+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Total 10 @,@ 247 
+... to train/train_83.txt
+[2025-03-12T17:22:58.123+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Of this number , approximately 9600 weapons were serviceable , or ready @-@ for @-@ issue . Note there were only 1 @,@ 364 percussion weapons available . Disposition of the weapons found in the Arsenal is somewhat sketchy , but from various records it can be surmised that the 5th , 6th , 7th , and 8th Arkansas Infantry Regiments , mustered in June , 1861 , were issued M1816 / M1822 .69 caliber flintlocks . The 9th and 10th Arkansas , four companies of Kelly 's 9th Arkansas Battalion , and the 3rd Arkansas Cavalry Regiment were issued flintlock Hall 's Rifles . The units comprising the infantry force of Van Dorn 's Army of the West were the 1st and 2nd Arkansas Mounted Rifles were also armed with M1822 flintlocks from the Little Rock Arsenal . By the time the 11th and 12th Arkansas Infantry Regiments mustered in at Little Rock , the supply of arms had been almost completely exhausted , and only old " junker " weapons were left . 
+
+[2025-03-12T17:22:58.123+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Of this number , ap... to train/train_84.txt
+[2025-03-12T17:22:58.130+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Most of the equipment , arms , and machinery at the Little Rock Arsenal was removed to east of the Mississippi River by order of Maj. Gen. Earl Van Dorn in April and May 1862 , and accountability for it is lost at that point . By all appearances , the equipment was sent down the river to Napoleon , Arkansas , and from there to Jackson Mississippi , where it was probably destroyed during the Vicksburg campaign in the early summer of 1863 . 
+
+[2025-03-12T17:22:58.130+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Most of the equipme... to train/train_85.txt
+[2025-03-12T17:22:58.137+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Major General Thomas C. Hindman , sent to command the district of Arkansas in May , 1862 , found the state nearly destitute of military material . Hindman established another armory at Arkadelphia , and revived the Little Rock Arsenal as a collection point and depot for armaments and ammunition manufacture for small arms . Hindman recorded : 
+
+[2025-03-12T17:22:58.137+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Major General Thoma... to train/train_86.txt
+[2025-03-12T17:22:58.143+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  " Machinery was made for manufacturing percussion caps and small arms , and both were turned out in small quantity , but of excellent quality . Lead mines were opened and worked , and a chemical laboratory was established and successfully operated in aid of the Ordnance Department and in the manufacture of calomel , castor oil , spirits of nitre , the various tinctures of iron , and other valuable medicines . Most of these works were located at or near Arkadelphia on the Ouachita River , 75 miles south from Little Rock . The tools , machinery , and the material were gathered piecemeal or else made by hand labor . Nothing of this sort had been before attempted on Government account in Arkansas to my knowledge , except for the manufacture of small arms , the machinery for which was taken away by General Van Dorn and there was neither capital nor sufficient enterprise among the citizens to engage in such undertakings � A further supply , along with lead and caps , was procured from the citizens of Little Rock and vicinity by donation , purchases , and impressments . 
+
+[2025-03-12T17:22:58.144+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  " Machinery was mad... to train/train_87.txt
+[2025-03-12T17:22:58.150+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  This ammunition , and that which I brought with me , was rapidly prepared for use at the Laboratory established at the Little Rock Arsenal for that purpose . As illustrating as the pitiful scarcity of material in the country , the fact may be stated that it was found necessary to use public documents of the State Library for cartridge paper . Gunsmiths were employed or conscripted , tools purchased or impressed , and the repair of the damaged guns I brought with me and about an equal number found at Little Rock commenced at once . But , after inspecting the work and observing the spirit of the men I decided that a garrison 500 strong could hold out against Fitch and that I would lead the remainder - about 1500 - to Gen 'l Rust as soon as shotguns and rifles could be obtained from Little Rock instead of pikes and lances , with which most of them were armed . Two days elapsed before the change could be effected . " 
+
+[2025-03-12T17:22:58.150+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  This ammunition , a... to train/train_88.txt
+[2025-03-12T17:22:58.156+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The Confederate ordnance establishment at Little Rock was reactivated in August , 1862 . Looking around for a suitable person to head this activity , General Hindman turned to the Confederate Navy and borrowed Lieutenant John W. Dunnington . Lt. Dunnington was the commander of the gunboat C.S.S. Ponchartrain , which had been brought to Little Rock in hopes of converting it to an ironclad . Dunnington was selected to head the ordnance works at Little Rock , and although he continued to draw his pay from the Confederate Navy Department , he was placed in charge of all Confederate ordnance activities ( which included artillery functions ) there with the rank of lieutenant colonel . 
+
+[2025-03-12T17:22:58.156+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The Confederate ord... to train/train_89.txt
+[2025-03-12T17:22:58.162+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Lt. Col. Dunnington 's " Returns for the month of August , 1862 , at Little Rock Arsenal , C.S.A. , " are found in Vol . 149 , Chapter IV of the " Captured Rebel Ordnance Records , " and are most enlightening as to the scope of Confederate ordnance activities at Little Rock during this crucial time . According to Dunnington , " When I assumed command at this Post , all material had been removed to Arkadelphia . There were no persons employed . No shops were open for repair of arms or for fabricating ammunition . Material , tools , etc . , had to be procured as well as the employment of laborers . Work commenced the last part of the month . " 
+
+[2025-03-12T17:22:58.163+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Lt. Col. Dunnington... to train/train_90.txt
+[2025-03-12T17:22:58.169+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The military force at Little Rock under Dunnington 's command consisted of four officers : himself , Major John B. Lockman , Captain C.C. Green , and 2nd Lt. W.W. Murphy . In addition to these , he had 20 enlisted men and a civilian force composed of a foreman , 2 clerks , 3 gunsmiths for repairing small arms , a laboratorian , 26 laborers in the ammunition laboratory , and a carpenter for making packing boxes . 
+
+[2025-03-12T17:22:58.169+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The military force ... to train/train_91.txt
+[2025-03-12T17:22:58.174+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  During the month of August , 1862 , the following work was performed : " Fabricated : one pair of musket bullet moulds ; 10 @,@ 000 buck & ball shot cartridges ; repaired : 750 muskets , shotguns , and rifles ; received and repaired : ordnance stores and ordnances ; performed : guard , office , and police duties ; inspected : Posts at Camden and Arkadelphia . " 
+
+[2025-03-12T17:22:58.175+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  During the month of... to train/train_92.txt
+[2025-03-12T17:22:58.181+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Lt. Col. Dunnington continued to build up his works at Little Rock until November 1862 , when Captain Sanford C. Faulkner ( composer of The Arkansas Traveler ) was placed in charge of the Arsenal . Dunnington presumably returned to his naval duties and the Ponchartrain . 
+
+[2025-03-12T17:22:58.182+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Lt. Col. Dunnington... to train/train_93.txt
+[2025-03-12T17:22:58.189+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  A " Summary of the Work Done for November , 1862 , Little Rock Arsenal " shows : Fabrication : 
+
+[2025-03-12T17:22:58.189+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  A " Summary of the ... to train/train_94.txt
+[2025-03-12T17:22:58.195+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  75 @,@ 000 buck & ball cartridges - percussion 
+
+[2025-03-12T17:22:58.196+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  75 @,@ 000 buck & b... to train/train_95.txt
+[2025-03-12T17:22:58.201+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  14 @,@ 000 buck & ball cartridges - flint 
+
+[2025-03-12T17:22:58.202+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  14 @,@ 000 buck & b... to train/train_96.txt
+[2025-03-12T17:22:58.207+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  275 paper fuzes 
+
+[2025-03-12T17:22:58.207+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  275 paper fuzes 
+... to train/train_97.txt
+[2025-03-12T17:22:58.214+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  117 rounds , 6 @-@ pounder canister shot 
+
+[2025-03-12T17:22:58.214+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  117 rounds , 6 @-@ ... to train/train_98.txt
+[2025-03-12T17:22:58.221+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  130 rounds , 6 @-@ pounder ball shot 
+
+[2025-03-12T17:22:58.221+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  130 rounds , 6 @-@ ... to train/train_99.txt
+[2025-03-12T17:22:58.228+0000] {aws_s3_repository.py:82} INFO - [AWS S3] Transferring test data...
+[2025-03-12T17:22:58.228+0000] {aws_s3_repository.py:83} INFO - [AWS S3] split_data: Dataset({
+    features: ['text'],
+    num_rows: 4358
+})
+[2025-03-12T17:22:58.234+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.234+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_0.txt
+[2025-03-12T17:22:58.279+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = Robert Boulter = 
+
+[2025-03-12T17:22:58.279+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = Robert Boulter = ... to test/test_1.txt
+[2025-03-12T17:22:58.286+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.286+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_2.txt
+[2025-03-12T17:22:58.330+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Robert Boulter is an English film , television and theatre actor . He had a guest @-@ starring role on the television series The Bill in 2000 . This was followed by a starring role in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . He had a guest role in the television series Judge John Deed in 2002 . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of the television series The Long Firm ; he starred alongside actors Mark Strong and Derek Jacobi . He was cast in the 2005 theatre productions of the Philip Ridley play Mercury Fur , which was performed at the Drum Theatre in Plymouth and the Menier Chocolate Factory in London . He was directed by John Tiffany and starred alongside Ben Whishaw , Shane Zaza , Harry Kent , Fraser Ayres , Sophie Stanton and Dominic Hall . 
+
+[2025-03-12T17:22:58.330+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Robert Boulter is a... to test/test_3.txt
+[2025-03-12T17:22:58.337+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In 2006 , Boulter starred alongside Whishaw in the play Citizenship written by Mark Ravenhill . He appeared on a 2006 episode of the television series , Doctors , followed by a role in the 2007 theatre production of How to Curse directed by Josie Rourke . How to Curse was performed at Bush Theatre in the London Borough of Hammersmith and Fulham . Boulter starred in two films in 2008 , Daylight Robbery by filmmaker Paris Leonti , and Donkey Punch directed by Olly Blackburn . In May 2008 , Boulter made a guest appearance on a two @-@ part episode arc of the television series Waking the Dead , followed by an appearance on the television series Survivors in November 2008 . He had a recurring role in ten episodes of the television series Casualty in 2010 , as " Kieron Fletcher " . Boulter starred in the 2011 film Mercenaries directed by Paris Leonti . 
+
+[2025-03-12T17:22:58.337+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In 2006 , Boulter s... to test/test_4.txt
+[2025-03-12T17:22:58.343+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.343+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_5.txt
+[2025-03-12T17:22:58.390+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Career = = 
+
+[2025-03-12T17:22:58.391+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Career = = 
+... to test/test_6.txt
+[2025-03-12T17:22:58.401+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.402+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_7.txt
+[2025-03-12T17:22:58.448+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.449+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_8.txt
+[2025-03-12T17:22:58.498+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = 2000 – 2005 = = = 
+
+[2025-03-12T17:22:58.499+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = 2000 – 2005 =... to test/test_9.txt
+[2025-03-12T17:22:58.510+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.511+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_10.txt
+[2025-03-12T17:22:58.560+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In 2000 Boulter had a guest @-@ starring role on the television series The Bill ; he portrayed " Scott Parry " in the episode , " In Safe Hands " . Boulter starred as " Scott " in the play Herons written by Simon Stephens , which was performed in 2001 at the Royal Court Theatre . A review of Boulter 's performance in The Independent on Sunday described him as " horribly menacing " in the role , and he received critical reviews in The Herald , and Evening Standard . He appeared in the television series Judge John Deed in 2002 as " Addem Armitage " in the episode " Political Expediency " , and had a role as a different character " Toby Steele " on The Bill . 
+
+[2025-03-12T17:22:58.561+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In 2000 Boulter had... to test/test_11.txt
+[2025-03-12T17:22:58.573+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  He had a recurring role in 2003 on two episodes of The Bill , as character " Connor Price " . In 2004 Boulter landed a role as " Craig " in the episode " Teddy 's Story " of the television series The Long Firm ; he starred alongside actors Mark Strong and Derek Jacobi . Boulter starred as " Darren " , in the 2005 theatre productions of the Philip Ridley play Mercury Fur . It was performed at the Drum Theatre in Plymouth , and the Menier Chocolate Factory in London . He was directed by John Tiffany and starred alongside Ben Whishaw , Shane Zaza , Harry Kent , Fraser Ayres , Sophie Stanton and Dominic Hall . Boulter received a favorable review in The Daily Telegraph : " The acting is shatteringly intense , with wired performances from Ben Whishaw ( now unrecognisable from his performance as Trevor Nunn 's Hamlet ) , Robert Boulter , Shane Zaza and Fraser Ayres . " The Guardian noted , " Ben Whishaw and Robert Boulter offer tenderness amid the savagery . " 
+
+[2025-03-12T17:22:58.574+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  He had a recurring ... to test/test_12.txt
+[2025-03-12T17:22:58.582+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.582+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_13.txt
+[2025-03-12T17:22:58.630+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = 2006 – present = = = 
+
+[2025-03-12T17:22:58.632+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = 2006 – presen... to test/test_14.txt
+[2025-03-12T17:22:58.643+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.644+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_15.txt
+[2025-03-12T17:22:58.689+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In 2006 Boulter starred in the play Citizenship written by Mark Ravenhill . The play was part of a series which featured different playwrights , titled Burn / Chatroom / Citizenship . In a 2006 interview , fellow actor Ben Whishaw identified Boulter as one of his favorite co @-@ stars : " I loved working with a guy called Robert Boulter , who was in the triple bill of Burn , Chatroom and Citizenship at the National . He played my brother in Mercury Fur . " He portrayed " Jason Tyler " on the 2006 episode of the television series , Doctors , titled " Something I Ate " . Boulter starred as " William " in the 2007 production of How to Curse directed by Josie Rourke . How to Curse was performed at Bush Theatre in the London Borough of Hammersmith and Fulham . In a review of the production for The Daily Telegraph , theatre critic Charles Spencer noted , " Robert Boulter brings a touching vulnerability to the stage as William . " 
+
+[2025-03-12T17:22:58.690+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In 2006 Boulter sta... to test/test_16.txt
+[2025-03-12T17:22:58.700+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Boulter starred in two films in 2008 , Daylight Robbery by filmmaker Paris Leonti , and Donkey Punch directed by Olly Blackburn . Boulter portrayed a character named " Sean " in Donkey Punch , who tags along with character " Josh " as the " quiet brother ... who hits it off with Tammi " . Boulter guest starred on a two @-@ part episode arc " Wounds " in May 2008 of the television series Waking the Dead as character " Jimmy Dearden " . He appeared on the television series Survivors as " Neil " in November 2008 . He had a recurring role in ten episodes of the television series Casualty in 2010 , as " Kieron Fletcher " . He portrayed an emergency physician applying for a medical fellowship . He commented on the inherent difficulties in portraying a physician on television : " Playing a doctor is a strange experience . Pretending you know what you 're talking about when you don 't is very bizarre but there are advisers on set who are fantastic at taking you through procedures and giving you the confidence to stand there and look like you know what you 're doing . " Boulter starred in the 2011 film Mercenaries directed by Paris Leonti . 
+
+[2025-03-12T17:22:58.701+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Boulter starred in ... to test/test_17.txt
+[2025-03-12T17:22:58.709+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.710+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_18.txt
+[2025-03-12T17:22:58.755+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Filmography = = 
+
+[2025-03-12T17:22:58.756+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Filmography = =... to test/test_19.txt
+[2025-03-12T17:22:58.766+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.767+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_20.txt
+[2025-03-12T17:22:58.813+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.814+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_21.txt
+[2025-03-12T17:22:58.863+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Film = = = 
+
+[2025-03-12T17:22:58.864+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Film = = = 
+... to test/test_22.txt
+[2025-03-12T17:22:58.875+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.876+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_23.txt
+[2025-03-12T17:22:58.922+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:58.922+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_24.txt
+[2025-03-12T17:22:58.970+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Television = = = 
+
+[2025-03-12T17:22:58.972+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Television = ... to test/test_25.txt
+[2025-03-12T17:22:58.997+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.004+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_26.txt
+[2025-03-12T17:22:59.100+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.100+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_27.txt
+[2025-03-12T17:22:59.161+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Theatre = = = 
+
+[2025-03-12T17:22:59.163+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Theatre = = =... to test/test_28.txt
+[2025-03-12T17:22:59.179+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.184+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_29.txt
+[2025-03-12T17:22:59.234+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.236+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_30.txt
+[2025-03-12T17:22:59.291+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.292+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_31.txt
+[2025-03-12T17:22:59.342+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = Du Fu = 
+
+[2025-03-12T17:22:59.343+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = Du Fu = 
+... to test/test_32.txt
+[2025-03-12T17:22:59.358+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.359+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_33.txt
+[2025-03-12T17:22:59.421+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Du Fu ( Wade – Giles : Tu Fu ; Chinese : 杜甫 ; 712 – 770 ) was a prominent Chinese poet of the Tang dynasty . Along with Li Bai ( Li Po ) , he is frequently called the greatest of the Chinese poets . His greatest ambition was to serve his country as a successful civil servant , but he proved unable to make the necessary accommodations . His life , like the whole country , was devastated by the An Lushan Rebellion of 755 , and his last 15 years were a time of almost constant unrest . 
+
+[2025-03-12T17:22:59.421+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Du Fu ( Wade – Gile... to test/test_34.txt
+[2025-03-12T17:22:59.435+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Although initially he was little @-@ known to other writers , his works came to be hugely influential in both Chinese and Japanese literary culture . Of his poetic writing , nearly fifteen hundred poems have been preserved over the ages . He has been called the " Poet @-@ Historian " and the " Poet @-@ Sage " by Chinese critics , while the range of his work has allowed him to be introduced to Western readers as " the Chinese Virgil , Horace , Ovid , Shakespeare , Milton , Burns , Wordsworth , Béranger , Hugo or Baudelaire " . 
+
+[2025-03-12T17:22:59.437+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Although initially ... to test/test_35.txt
+[2025-03-12T17:22:59.448+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.448+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_36.txt
+[2025-03-12T17:22:59.494+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Life = = 
+
+[2025-03-12T17:22:59.494+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Life = = 
+... to test/test_37.txt
+[2025-03-12T17:22:59.499+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.500+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_38.txt
+[2025-03-12T17:22:59.545+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Traditional Chinese literary criticism emphasized the life of the author when interpreting a work , a practice which Burton Watson attributes to " the close links that traditional Chinese thought posits between art and morality " . Since many of Du Fu 's poems feature morality and history , this practice is particularly important . Another reason , identified by the Chinese historian William Hung , is that Chinese poems are typically concise , omitting context that might be relevant , but which an informed contemporary could be assumed to know . For modern Western readers , " The less accurately we know the time , the place and the circumstances in the background , the more liable we are to imagine it incorrectly , and the result will be that we either misunderstand the poem or fail to understand it altogether " . Stephen Owen suggests a third factor particular to Du Fu , arguing that the variety of the poet 's work required consideration of his whole life , rather than the " reductive " categorizations used for more limited poets . 
+
+[2025-03-12T17:22:59.546+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Traditional Chinese... to test/test_39.txt
+[2025-03-12T17:22:59.554+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.555+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_40.txt
+[2025-03-12T17:22:59.602+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Early years = = = 
+
+[2025-03-12T17:22:59.603+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Early years =... to test/test_41.txt
+[2025-03-12T17:22:59.612+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.612+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_42.txt
+[2025-03-12T17:22:59.659+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Most of what is known of Du Fu 's life comes from his poems . His paternal grandfather was Du Shenyan , a noted politician and poet during the reign of Empress Wu . Du Fu was born in 712 ; the exact birthplace is unknown , except that it was near Luoyang , Henan province ( Gong county is a favourite candidate ) . In later life , he considered himself to belong to the capital city of Chang 'an , ancestral hometown of the Du family . 
+
+[2025-03-12T17:22:59.660+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Most of what is kno... to test/test_43.txt
+[2025-03-12T17:22:59.665+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Du Fu 's mother died shortly after he was born , and he was partially raised by his aunt . He had an elder brother , who died young . He also had three half brothers and one half sister , to whom he frequently refers in his poems , although he never mentions his stepmother . 
+
+[2025-03-12T17:22:59.666+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Du Fu 's mother die... to test/test_44.txt
+[2025-03-12T17:22:59.672+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The son of a minor scholar @-@ official , his youth was spent on the standard education of a future civil servant : study and memorisation of the Confucian classics of philosophy , history and poetry . He later claimed to have produced creditable poems by his early teens , but these have been lost . 
+
+[2025-03-12T17:22:59.672+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The son of a minor ... to test/test_45.txt
+[2025-03-12T17:22:59.679+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In the early 730s , he travelled in the Jiangsu / Zhejiang area ; his earliest surviving poem , describing a poetry contest , is thought to date from the end of this period , around 735 . In that year , he took the civil service exam , likely in Chang 'an . He failed , to his surprise and that of centuries of later critics . Hung concludes that he probably failed because his prose style at the time was too dense and obscure , while Chou suggests his failure to cultivate connections in the capital may have been to blame . After this failure , he went back to traveling , this time around Shandong and Hebei . 
+
+[2025-03-12T17:22:59.679+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In the early 730s ,... to test/test_46.txt
+[2025-03-12T17:22:59.685+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  His father died around 740 . Du Fu would have been allowed to enter the civil service because of his father 's rank , but he is thought to have given up the privilege in favour of one of his half brothers . He spent the next four years living in the Luoyang area , fulfilling his duties in domestic affairs . 
+
+[2025-03-12T17:22:59.686+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  His father died aro... to test/test_47.txt
+[2025-03-12T17:22:59.692+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In the autumn of 744 , he met Li Bai ( Li Po ) for the first time , and the two poets formed a friendship . David Young describes this as " the most significant formative element in Du Fu 's artistic development " because it gave him a living example of the reclusive poet @-@ scholar life to which he was attracted after his failure in the civil service exam . The relationship was somewhat one @-@ sided , however . Du Fu was by some years the younger , while Li Bai was already a poetic star . We have twelve poems to or about Li Bai from the younger poet , but only one in the other direction . They met again only once , in 745 . 
+
+[2025-03-12T17:22:59.693+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In the autumn of 74... to test/test_48.txt
+[2025-03-12T17:22:59.699+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In 746 , he moved to the capital in an attempt to resurrect his official career . He took the civil service exam a second time during the following year , but all the candidates were failed by the prime minister ( apparently in order to prevent the emergence of possible rivals ) . He never again attempted the examinations , instead petitioning the emperor directly in 751 , 754 and probably again in 755 . He married around 752 , and by 757 the couple had had five children — three sons and two daughters — but one of the sons died in infancy in 755 . From 754 he began to have lung problems ( probably asthma ) , the first of a series of ailments which dogged him for the rest of his life . It was in that year that Du Fu was forced to move his family due to the turmoil of a famine brought about by massive floods in the region . 
+
+[2025-03-12T17:22:59.700+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In 746 , he moved t... to test/test_49.txt
+[2025-03-12T17:22:59.706+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In 755 , he received an appointment as Registrar of the Right Commandant 's office of the Crown Prince 's Palace . Although this was a minor post , in normal times it would have been at least the start of an official career . Even before he had begun work , however , the position was swept away by events . 
+
+[2025-03-12T17:22:59.706+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In 755 , he receive... to test/test_50.txt
+[2025-03-12T17:22:59.713+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.713+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_51.txt
+[2025-03-12T17:22:59.757+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = War = = = 
+
+[2025-03-12T17:22:59.757+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = War = = = 
+... to test/test_52.txt
+[2025-03-12T17:22:59.764+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.764+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_53.txt
+[2025-03-12T17:22:59.809+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The An Lushan Rebellion began in December 755 , and was not completely suppressed for almost eight years . It caused enormous disruption to Chinese society : the census of 754 recorded 52 @.@ 9 million people , but ten years later , the census counted just 16 @.@ 9 million , the remainder having been displaced or killed . During this time , Du Fu led a largely itinerant life unsettled by wars , associated famines and imperial displeasure . This period of unhappiness was the making of Du Fu as a poet : Even Shan Chou has written that , " What he saw around him — the lives of his family , neighbors , and strangers – what he heard , and what he hoped for or feared from the progress of various campaigns — these became the enduring themes of his poetry " . Even when he learned of the death of his youngest child , he turned to the suffering of others in his poetry instead of dwelling upon his own misfortunes . Du Fu wrote : 
+
+[2025-03-12T17:22:59.810+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The An Lushan Rebel... to test/test_54.txt
+[2025-03-12T17:22:59.816+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Brooding on what I have lived through , if even I know such suffering , the common man must surely be rattled by the winds . 
+
+[2025-03-12T17:22:59.816+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Brooding on what I ... to test/test_55.txt
+[2025-03-12T17:22:59.824+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In 756 , Emperor Xuanzong was forced to flee the capital and abdicate . Du Fu , who had been away from the city , took his family to a place of safety and attempted to join the court of the new emperor ( Suzong ) , but he was captured by the rebels and taken to Chang 'an . In the autumn , his youngest son , Du Zongwu ( Baby Bear ) , was born . Around this time Du Fu is thought to have contracted malaria . 
+
+[2025-03-12T17:22:59.824+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In 756 , Emperor Xu... to test/test_56.txt
+[2025-03-12T17:22:59.834+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  He escaped from Chang 'an the following year , and was appointed Reminder when he rejoined the court in May 757 . This post gave access to the emperor but was largely ceremonial . Du Fu 's conscientiousness compelled him to try to make use of it : he caused trouble for himself by protesting the removal of his friend and patron Fang Guan on a petty charge . He was arrested but was pardoned in June . He was granted leave to visit his family in September , but he soon rejoined the court and on December 8 , 757 , he returned to Chang 'an with the emperor following its recapture by government forces . However , his advice continued to be unappreciated , and in the summer of 758 he was demoted to a post as Commissioner of Education in Huazhou . The position was not to his taste : in one poem , he wrote : 
+
+[2025-03-12T17:22:59.836+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  He escaped from Cha... to test/test_57.txt
+[2025-03-12T17:22:59.842+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  I am about to scream madly in the office / Especially when they bring more papers to pile higher on my desk . 
+
+[2025-03-12T17:22:59.842+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  I am about to screa... to test/test_58.txt
+[2025-03-12T17:22:59.850+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  He moved on in the summer of 759 ; this has traditionally been ascribed to famine , but Hung believes that frustration is a more likely reason . He next spent around six weeks in Qinzhou ( now Tianshui , Gansu province ) , where he wrote more than sixty poems . 
+
+[2025-03-12T17:22:59.851+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  He moved on in the ... to test/test_59.txt
+[2025-03-12T17:22:59.857+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.858+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_60.txt
+[2025-03-12T17:22:59.905+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Chengdu = = = 
+
+[2025-03-12T17:22:59.906+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Chengdu = = =... to test/test_61.txt
+[2025-03-12T17:22:59.912+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.912+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_62.txt
+[2025-03-12T17:22:59.957+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In December 759 , he briefly stayed in Tonggu ( modern Gansu ) . He departed on December 24 for Chengdu ( Sichuan province ) , where he was hosted by local Prefect and fellow poet Pei Di . Du subsequently based himself in Sichuan for most of the next five years . By the autumn of that year he was in financial trouble , and sent poems begging help to various acquaintances . He was relieved by Yan Wu , a friend and former colleague who was appointed governor general at Chengdu . Despite his financial problems , this was one of the happiest and most peaceful periods of his life . Many of Du 's poems from this period are peaceful depictions of his life at " thatched hut " . In 762 , he left the city to escape a rebellion , but he returned in summer 764 when he was appointed an advisor to Yan , who was involved in campaigns against the Tibetan Empire . 
+
+[2025-03-12T17:22:59.957+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In December 759 , h... to test/test_63.txt
+[2025-03-12T17:22:59.967+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:22:59.968+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_64.txt
+[2025-03-12T17:23:00.015+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Last years = = = 
+
+[2025-03-12T17:23:00.016+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Last years = ... to test/test_65.txt
+[2025-03-12T17:23:00.024+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.025+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_66.txt
+[2025-03-12T17:23:00.070+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Luoyang , the region of his birthplace , was recovered by government forces in the winter of 762 , and in the spring of 765 Du Fu and his family sailed down the Yangtze , apparently with the intention of making their way there . They traveled slowly , held up by his ill @-@ health ( by this time he was suffering from poor eyesight , deafness and general old age in addition to his previous ailments ) . They stayed in Kuizhou ( in what is now Baidicheng , Chongqing ) at the entrance to the Three Gorges for almost two years from late spring 766 . This period was Du Fu 's last great poetic flowering , and here he wrote 400 poems in his dense , late style . In autumn 766 , Bo Maolin became governor of the region : he supported Du Fu financially and employed him as his unofficial secretary . 
+
+[2025-03-12T17:23:00.071+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Luoyang , the regio... to test/test_67.txt
+[2025-03-12T17:23:00.078+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In March 768 , he began his journey again and got as far as Hunan province , where he died in Tanzhou ( now Changsha ) in November or December 770 , in his 58th year . He was survived by his wife and two sons , who remained in the area for some years at least . His last known descendant is a grandson who requested a grave inscription for the poet from Yuan Zhen in 813 . 
+
+[2025-03-12T17:23:00.078+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In March 768 , he b... to test/test_68.txt
+[2025-03-12T17:23:00.088+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Hung summarises his life by concluding that , " He appeared to be a filial son , an affectionate father , a generous brother , a faithful husband , a loyal friend , a dutiful official , and a patriotic subject . " 
+
+[2025-03-12T17:23:00.088+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Hung summarises his... to test/test_69.txt
+[2025-03-12T17:23:00.096+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Below is an example of one of Du Fu 's later works , To My Retired Friend Wei ( Chinese : 贈衛八處士 ) . Like many other poems in the Tang it featured the theme of a long parting between friends , which was often due to officials being frequently transferred to the provinces : 
+
+[2025-03-12T17:23:00.097+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Below is an example... to test/test_70.txt
+[2025-03-12T17:23:00.103+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.104+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_71.txt
+[2025-03-12T17:23:00.151+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Works = = 
+
+[2025-03-12T17:23:00.152+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Works = = 
+... to test/test_72.txt
+[2025-03-12T17:23:00.158+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.158+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_73.txt
+[2025-03-12T17:23:00.203+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Criticism of Du Fu 's works has focused on his strong sense of history , his moral engagement , and his technical excellence . 
+
+[2025-03-12T17:23:00.204+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Criticism of Du Fu ... to test/test_74.txt
+[2025-03-12T17:23:00.210+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.210+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_75.txt
+[2025-03-12T17:23:00.254+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = History = = = 
+
+[2025-03-12T17:23:00.255+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = History = = =... to test/test_76.txt
+[2025-03-12T17:23:00.262+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.262+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_77.txt
+[2025-03-12T17:23:00.306+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Since the Song dynasty , critics have called Du Fu the " poet historian " ( 詩史 shī shǐ ) . The most directly historical of his poems are those commenting on military tactics or the successes and failures of the government , or the poems of advice which he wrote to the emperor . Indirectly , he wrote about the effect of the times in which he lived on himself , and on the ordinary people of China . As Watson notes , this is information " of a kind seldom found in the officially compiled histories of the era " . 
+
+[2025-03-12T17:23:00.307+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Since the Song dyna... to test/test_78.txt
+[2025-03-12T17:23:00.315+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Du Fu 's political comments are based on emotion rather than calculation : his prescriptions have been paraphrased as , " Let us all be less selfish , let us all do what we are supposed to do " . Since his views were impossible to disagree with , his forcefully expressed truisms enabled his installation as the central figure of Chinese poetic history . 
+
+[2025-03-12T17:23:00.315+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Du Fu 's political ... to test/test_79.txt
+[2025-03-12T17:23:00.325+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.348+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_80.txt
+[2025-03-12T17:23:00.393+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Moral engagement = = = 
+
+[2025-03-12T17:23:00.393+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Moral engagem... to test/test_81.txt
+[2025-03-12T17:23:00.401+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.401+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_82.txt
+[2025-03-12T17:23:00.447+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  A second favourite epithet of Chinese critics is that of " poet sage " ( 詩聖 shī shèng ) , a counterpart to the philosophical sage , Confucius . One of the earliest surviving works , The Song of the Wagons ( from around 750 ) , gives voice to the sufferings of a conscript soldier in the imperial army and a clear @-@ sighted consciousness of suffering . These concerns are continuously articulated in poems on the lives of both soldiers and civilians produced by Du Fu throughout his life . 
+
+[2025-03-12T17:23:00.447+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  A second favourite ... to test/test_83.txt
+[2025-03-12T17:23:00.454+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Although Du Fu 's frequent references to his own difficulties can give the impression of an all @-@ consuming solipsism , Hawkes argues that his " famous compassion in fact includes himself , viewed quite objectively and almost as an afterthought " . He therefore " lends grandeur " to the wider picture by comparing it to " his own slightly comical triviality " . 
+
+[2025-03-12T17:23:00.455+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Although Du Fu 's f... to test/test_84.txt
+[2025-03-12T17:23:00.464+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Du Fu 's compassion , for himself and for others , was part of his general broadening of the scope of poetry : he devoted many works to topics which had previously been considered unsuitable for poetic treatment . Zhang Jie wrote that for Du Fu , " everything in this world is poetry " , Du wrote extensively on subjects such as domestic life , calligraphy , paintings , animals , and other poems . 
+
+[2025-03-12T17:23:00.464+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Du Fu 's compassion... to test/test_85.txt
+[2025-03-12T17:23:00.473+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.474+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_86.txt
+[2025-03-12T17:23:00.523+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Technical excellence = = = 
+
+[2025-03-12T17:23:00.523+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Technical exc... to test/test_87.txt
+[2025-03-12T17:23:00.531+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.531+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_88.txt
+[2025-03-12T17:23:00.575+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Du Fu 's work is notable above all for its range . Chinese critics traditionally used the term 集大成 ( jídàchéng- " complete symphony " ) , a reference to Mencius ' description of Confucius . Yuan Zhen was the first to note the breadth of Du Fu 's achievement , writing in 813 that his predecessor , " united in his work traits which previous men had displayed only singly " . He mastered all the forms of Chinese poetry : Chou says that in every form he " either made outstanding advances or contributed outstanding examples " . Furthermore , his poems use a wide range of registers , from the direct and colloquial to the allusive and self @-@ consciously literary . This variety is manifested even within individual works : Owen identifies the , " rapid stylistic and thematic shifts " in poems which enable the poet to represent different facets of a situation , while Chou uses the term " juxtaposition " as the major analytical tool in her work . Du Fu is noted for having written more on poetics and painting than any other writer of his time . He wrote eighteen poems on painting alone , more than any other Tang poet . Du Fu 's seemingly negative commentary on the prized horse paintings of Han Gan ignited a controversy that has persisted to the present day . 
+
+[2025-03-12T17:23:00.576+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Du Fu 's work is no... to test/test_89.txt
+[2025-03-12T17:23:00.583+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The tenor of his work changed as he developed his style and adapted to his surroundings ( " chameleon @-@ like " according to Watson ) : his earliest works are in a relatively derivative , courtly style , but he came into his own in the years of the rebellion . Owen comments on the " grim simplicity " of the Qinzhou poems , which mirrors the desert landscape ; the works from his Chengdu period are " light , often finely observed " ; while the poems from the late Kuizhou period have a " density and power of vision " . 
+
+[2025-03-12T17:23:00.584+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The tenor of his wo... to test/test_90.txt
+[2025-03-12T17:23:00.590+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Although he wrote in all poetic forms , Du Fu is best known for his lǜshi , a type of poem with strict constraints on form and content , for example : 
+
+[2025-03-12T17:23:00.591+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Although he wrote i... to test/test_91.txt
+[2025-03-12T17:23:00.599+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  About two thirds of Du Fu 's 1500 extant works are in this form , and he is generally considered to be its leading exponent . His best lǜshi use the parallelisms required by the form to add expressive content rather than as mere technical restrictions . Hawkes comments that , " it is amazing that Tu Fu is able to use so immensely stylized a form in so natural a manner " . 
+
+[2025-03-12T17:23:00.600+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  About two thirds of... to test/test_92.txt
+[2025-03-12T17:23:00.608+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.609+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_93.txt
+[2025-03-12T17:23:00.654+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Influence = = 
+
+[2025-03-12T17:23:00.655+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Influence = = 
+... to test/test_94.txt
+[2025-03-12T17:23:00.662+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.662+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to test/test_95.txt
+[2025-03-12T17:23:00.707+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  According to the Encyclopædia Britannica , Du Fu 's writings are considered by many literary critics to be among the greatest of all time , and it states " his dense , compressed language makes use of all the connotative overtones of a phrase and of all the intonational potentials of the individual word , qualities that no translation can ever reveal . " 
+
+[2025-03-12T17:23:00.708+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  According to the En... to test/test_96.txt
+[2025-03-12T17:23:00.716+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  In his lifetime and immediately following his death , Du Fu was not greatly appreciated . In part this can be attributed to his stylistic and formal innovations , some of which are still " considered extremely daring and bizarre by Chinese critics . " There are few contemporary references to him — only eleven poems from six writers — and these describe him in terms of affection , but not as a paragon of poetic or moral ideals . Du Fu is also poorly represented in contemporary anthologies of poetry . 
+
+[2025-03-12T17:23:00.716+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  In his lifetime and... to test/test_97.txt
+[2025-03-12T17:23:00.724+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  However , as Hung notes , he " is the only Chinese poet whose influence grew with time " , and his works began to increase in popularity in the ninth century . Early positive comments came from Bai Juyi , who praised the moral sentiments of some of Du Fu 's works ( although he found these in only a small fraction of the poems ) , and from Han Yu , who wrote a piece defending Du Fu and Li Bai on aesthetic grounds from attacks made against them . Both these writers showed the influence of Du Fu in their own poetic work . By the beginning of the 10th century , Wei Zhuang constructed the first replica of his thatched cottage in Sichuan . 
+
+[2025-03-12T17:23:00.725+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  However , as Hung n... to test/test_98.txt
+[2025-03-12T17:23:00.733+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  It was in the 11th century , during the Northern Song era that Du Fu 's reputation reached its peak . In this period a comprehensive re @-@ evaluation of earlier poets took place , in which Wang Wei , Li Bai and Du Fu came to be regarded as representing respectively the Buddhist , Daoist and Confucian strands of Chinese culture . At the same time , the development of Neo @-@ Confucianism ensured that Du Fu , as its poetic exemplar , occupied the paramount position . Su Shi famously expressed this reasoning when he wrote that Du Fu was " preeminent ... because ... through all his vicissitudes , he never for the space of a meal forgot his sovereign " . His influence was helped by his ability to reconcile apparent opposites : political conservatives were attracted by his loyalty to the established order , while political radicals embraced his concern for the poor . Literary conservatives could look to his technical mastery , while literary radicals were inspired by his innovations . Since the establishment of the People 's Republic of China , Du Fu 's loyalty to the state and concern for the poor have been interpreted as embryonic nationalism and socialism , and he has been praised for his use of simple , " people 's language " . 
+
+[2025-03-12T17:23:00.734+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  It was in the 11th ... to test/test_99.txt
+[2025-03-12T17:23:00.743+0000] {aws_s3_repository.py:82} INFO - [AWS S3] Transferring validation data...
+[2025-03-12T17:23:00.745+0000] {aws_s3_repository.py:83} INFO - [AWS S3] split_data: Dataset({
+    features: ['text'],
+    num_rows: 3760
+})
+[2025-03-12T17:23:00.751+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.751+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_0.txt
+[2025-03-12T17:23:00.797+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = Homarus gammarus = 
+
+[2025-03-12T17:23:00.797+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = Homarus gammarus ... to validation/validation_1.txt
+[2025-03-12T17:23:00.804+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.805+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_2.txt
+[2025-03-12T17:23:00.850+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Homarus gammarus , known as the European lobster or common lobster , is a species of clawed lobster from the eastern Atlantic Ocean , Mediterranean Sea and parts of the Black Sea . It is closely related to the American lobster , H. americanus . It may grow to a length of 60 cm ( 24 in ) and a mass of 6 kilograms ( 13 lb ) , and bears a conspicuous pair of claws . In life , the lobsters are blue , only becoming " lobster red " on cooking . Mating occurs in the summer , producing eggs which are carried by the females for up to a year before hatching into planktonic larvae . Homarus gammarus is a highly esteemed food , and is widely caught using lobster pots , mostly around the British Isles . 
+
+[2025-03-12T17:23:00.850+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Homarus gammarus , ... to validation/validation_3.txt
+[2025-03-12T17:23:00.858+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.858+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_4.txt
+[2025-03-12T17:23:00.903+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Description = = 
+
+[2025-03-12T17:23:00.904+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Description = =... to validation/validation_5.txt
+[2025-03-12T17:23:00.911+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:00.911+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_6.txt
+[2025-03-12T17:23:00.955+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Homarus gammarus is a large crustacean , with a body length up to 60 centimetres ( 24 in ) and weighing up to 5 – 6 kilograms ( 11 – 13 lb ) , although the lobsters caught in lobster pots are usually 23 – 38 cm ( 9 – 15 in ) long and weigh 0 @.@ 7 – 2 @.@ 2 kg ( 1 @.@ 5 – 4 @.@ 9 lb ) . Like other crustaceans , lobsters have a hard exoskeleton which they must shed in order to grow , in a process called ecdysis ( moulting ) . This may occur several times a year for young lobsters , but decreases to once every 1 – 2 years for larger animals . 
+
+[2025-03-12T17:23:00.956+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Homarus gammarus is... to validation/validation_7.txt
+[2025-03-12T17:23:00.961+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The first pair of pereiopods is armed with a large , asymmetrical pair of claws . The larger one is the " crusher " , and has rounded nodules used for crushing prey ; the other is the " cutter " , which has sharp inner edges , and is used for holding or tearing the prey . Usually , the left claw is the crusher , and the right is the cutter . 
+
+[2025-03-12T17:23:00.962+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The first pair of p... to validation/validation_8.txt
+[2025-03-12T17:23:00.969+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The exoskeleton is generally blue above , with spots that coalesce , and yellow below . The red colour associated with lobsters only appears after cooking . This occurs because , in life , the red pigment astaxanthin is bound to a protein complex , but the complex is broken up by the heat of cooking , releasing the red pigment . 
+
+[2025-03-12T17:23:00.969+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The exoskeleton is ... to validation/validation_9.txt
+[2025-03-12T17:23:00.977+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The closest relative of H. gammarus is the American lobster , Homarus americanus . The two species are very similar , and can be crossed artificially , although hybrids are unlikely to occur in the wild since their ranges do not overlap . The two species can be distinguished by a number of characteristics : 
+
+[2025-03-12T17:23:00.978+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The closest relativ... to validation/validation_10.txt
+[2025-03-12T17:23:00.983+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The rostrum of H. americanus bears one or more spines on the underside , which are lacking in H. gammarus . 
+
+[2025-03-12T17:23:00.984+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The rostrum of H. a... to validation/validation_11.txt
+[2025-03-12T17:23:00.991+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The spines on the claws of H. americanus are red or red @-@ tipped , while those of H. gammarus are white or white @-@ tipped . 
+
+[2025-03-12T17:23:00.992+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The spines on the c... to validation/validation_12.txt
+[2025-03-12T17:23:00.999+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The underside of the claw of H. americanus is orange or red , while that of H. gammarus is creamy white or very pale red . 
+
+[2025-03-12T17:23:01.000+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The underside of th... to validation/validation_13.txt
+[2025-03-12T17:23:01.008+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.008+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_14.txt
+[2025-03-12T17:23:01.054+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Life cycle = = 
+
+[2025-03-12T17:23:01.055+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Life cycle = = ... to validation/validation_15.txt
+[2025-03-12T17:23:01.061+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.061+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_16.txt
+[2025-03-12T17:23:01.106+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Female H. gammarus reach sexual maturity when they have grown to a carapace length of 80 – 85 millimetres ( 3 @.@ 1 – 3 @.@ 3 in ) , whereas males mature at a slightly smaller size . Mating typically occurs in summer between a recently moulted female , whose shell is therefore soft , and a hard @-@ shelled male . The female carries the eggs for up to 12 months , depending on the temperature , attached to her pleopods . Females carrying eggs are said to be " berried " and can be found throughout the year . 
+
+[2025-03-12T17:23:01.106+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Female H. gammarus ... to validation/validation_17.txt
+[2025-03-12T17:23:01.113+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The eggs hatch at night , and the larvae swim to the water surface where they drift with the ocean currents , preying on zooplankton . This stage involves three moults and lasts for 15 – 35 days . After the third moult , the juvenile takes on a form closer to the adult , and adopts a benthic lifestyle . The juveniles are rarely seen in the wild , and are poorly known , although they are known to be capable of digging extensive burrows . It is estimated that only 1 larva in every 20 @,@ 000 survives to the benthic phase . When they reach a carapace length of 15 mm ( 0 @.@ 59 in ) , the juveniles leave their burrows and start their adult lives . 
+
+[2025-03-12T17:23:01.114+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The eggs hatch at n... to validation/validation_18.txt
+[2025-03-12T17:23:01.120+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.121+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_19.txt
+[2025-03-12T17:23:01.168+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Distribution = = 
+
+[2025-03-12T17:23:01.169+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Distribution = ... to validation/validation_20.txt
+[2025-03-12T17:23:01.177+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.177+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_21.txt
+[2025-03-12T17:23:01.222+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Homarus gammarus is found across the north @-@ eastern Atlantic Ocean from northern Norway to the Azores and Morocco , not including the Baltic Sea . It is also present in most of the Mediterranean Sea , only missing from the section east of Crete , and along only the north @-@ west coast of the Black Sea . The northernmost populations are found in the Norwegian fjords Tysfjorden and Nordfolda , inside the Arctic Circle . 
+
+[2025-03-12T17:23:01.223+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Homarus gammarus is... to validation/validation_22.txt
+[2025-03-12T17:23:01.231+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The species can be divided into four genetically distinct populations , one widespread population , and three which have diverged due to small effective population sizes , possibly due to adaptation to the local environment . The first of these is the population of lobsters from northern Norway , which have been referred to as the " midnight @-@ sun lobster " . The populations in the Mediterranean Sea are distinct from those in the Atlantic Ocean . The last distinct population is found in the Netherlands : samples from the Oosterschelde were distinct from those collected in the North Sea or English Channel . 
+
+[2025-03-12T17:23:01.231+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The species can be ... to validation/validation_23.txt
+[2025-03-12T17:23:01.240+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Attempts have been made to introduce H. gammarus to New Zealand , alongside other European species such as the edible crab , Cancer pagurus . Between 1904 and 1914 , one million lobster larvae were released from hatcheries in Dunedin , but the species did not become established there . 
+
+[2025-03-12T17:23:01.241+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Attempts have been ... to validation/validation_24.txt
+[2025-03-12T17:23:01.250+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.250+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_25.txt
+[2025-03-12T17:23:01.296+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Ecology = = 
+
+[2025-03-12T17:23:01.297+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Ecology = = 
+... to validation/validation_26.txt
+[2025-03-12T17:23:01.305+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.305+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_27.txt
+[2025-03-12T17:23:01.349+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Adult H. gammarus live on the continental shelf at depths of 0 – 150 metres ( 0 – 492 ft ) , although not normally deeper than 50 m ( 160 ft ) . They prefer hard substrates , such as rocks or hard mud , and live in holes or crevices , emerging at night to feed . 
+
+[2025-03-12T17:23:01.349+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Adult H. gammarus l... to validation/validation_28.txt
+[2025-03-12T17:23:01.357+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The diet of H. gammarus mostly consists of other benthic invertebrates . These include crabs , molluscs , sea urchins , starfish and polychaete worms . 
+
+[2025-03-12T17:23:01.357+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The diet of H. gamm... to validation/validation_29.txt
+[2025-03-12T17:23:01.365+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The three clawed lobster species Homarus gammarus , H. americanus and Nephrops norvegicus are hosts to the three known species of the animal phylum Cycliophora ; the species on H. gammarus has not been described . 
+
+[2025-03-12T17:23:01.365+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The three clawed lo... to validation/validation_30.txt
+[2025-03-12T17:23:01.373+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Homarus gammarus is susceptible to the disease gaffkaemia , caused by the bacterium Aerococcus viridans . Although it is frequently found in American lobsters , the disease has only been seen in captive H. gammarus , where prior occupation of the tanks by H. americanus could not be ruled out . 
+
+[2025-03-12T17:23:01.374+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Homarus gammarus is... to validation/validation_31.txt
+[2025-03-12T17:23:01.382+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.383+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_32.txt
+[2025-03-12T17:23:01.428+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Human consumption = = 
+
+[2025-03-12T17:23:01.429+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Human consumpti... to validation/validation_33.txt
+[2025-03-12T17:23:01.435+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.436+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_34.txt
+[2025-03-12T17:23:01.483+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Homarus gammarus is traditionally " highly esteemed " as a foodstuff and was mentioned in " The Crabfish " a seventeenth century English folk song . It may fetch very high prices and may be sold fresh , frozen , canned or powdered . Both the claws and the abdomen of H. gammarus contain " excellent " white meat , and most of the contents of the cephalothorax are edible . The exceptions are the gastric mill and the " sand vein " ( gut ) . The price of H. gammarus is up to three times higher than that of H. americanus , and the European species is considered to have a better flavour . 
+
+[2025-03-12T17:23:01.483+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Homarus gammarus is... to validation/validation_35.txt
+[2025-03-12T17:23:01.490+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Lobsters are mostly fished using lobster pots , although lines baited with octopus or cuttlefish sometimes succeed in tempting them out , to allow them to be caught in a net or by hand . In 2008 , 4 @,@ 386 t of H. gammarus were caught across Europe and North Africa , of which 3 @,@ 462 t ( 79 % ) was caught in the British Isles ( including the Channel Islands ) . The minimum landing size for H. gammarus is a carapace length of 87 mm ( 3 @.@ 4 in ) . 
+
+[2025-03-12T17:23:01.490+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Lobsters are mostly... to validation/validation_36.txt
+[2025-03-12T17:23:01.498+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Aquaculture systems for H. gammarus are under development , and production rates are still very low . 
+
+[2025-03-12T17:23:01.499+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Aquaculture systems... to validation/validation_37.txt
+[2025-03-12T17:23:01.506+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.506+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_38.txt
+[2025-03-12T17:23:01.551+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Taxonomic history = = 
+
+[2025-03-12T17:23:01.551+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Taxonomic histo... to validation/validation_39.txt
+[2025-03-12T17:23:01.557+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.558+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_40.txt
+[2025-03-12T17:23:01.603+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Homarus gammarus was first given a binomial name by Carl Linnaeus in the tenth edition of his Systema Naturae , published in 1758 . That name was Cancer gammarus , since Linnaeus ' concept of the genus Cancer at that time included all large crustaceans . 
+
+[2025-03-12T17:23:01.604+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Homarus gammarus wa... to validation/validation_41.txt
+[2025-03-12T17:23:01.612+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  H. gammarus is the type species of the genus Homarus Weber , 1795 , as determined by Direction 51 of the International Commission on Zoological Nomenclature . Prior to that direction , confusion arose because the species had been referred to by several different names , including Astacus marinus Fabricius , 1775 and Homarus vulgaris H. Milne @-@ Edwards , 1837 , and also because Friedrich Weber 's description of the genus had been overlooked until rediscovered by Mary Rathbun , rendering any prior assignments of type species ( for Homarus H. Milne @-@ Edwards , 1837 ) invalid for Homarus Weber , 1795 . 
+
+[2025-03-12T17:23:01.612+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  H. gammarus is the ... to validation/validation_42.txt
+[2025-03-12T17:23:01.618+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The type specimen of Homarus gammarus was a lectotype selected by Lipke Holthuis in 1974 . It came from 57 ° 53 ′ N 11 ° 32 ′ E , near Marstrand , Sweden ( 48 kilometres or 30 miles northwest of Gothenburg ) , but both it and the paralectotypes have since been lost . 
+
+[2025-03-12T17:23:01.619+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The type specimen o... to validation/validation_43.txt
+[2025-03-12T17:23:01.626+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The common name for H. gammarus preferred by the Food and Agriculture Organization is " European lobster " , but the species is also widely known as the " common lobster " . 
+
+[2025-03-12T17:23:01.627+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The common name for... to validation/validation_44.txt
+[2025-03-12T17:23:01.633+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.633+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_45.txt
+[2025-03-12T17:23:01.678+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.679+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_46.txt
+[2025-03-12T17:23:01.723+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = Frank Headlam = 
+
+[2025-03-12T17:23:01.723+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = Frank Headlam = 
+... to validation/validation_47.txt
+[2025-03-12T17:23:01.729+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.730+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_48.txt
+[2025-03-12T17:23:01.774+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Air Vice Marshal Frank Headlam , CB , CBE ( 15 July 1914 – 23 December 1976 ) was a senior commander in the Royal Australian Air Force ( RAAF ) . Born and educated in Tasmania , he joined the RAAF as an air cadet in January 1934 . He specialised in flying instruction and navigation before the outbreak of World War II . In April 1941 , he became commanding officer of No. 2 Squadron , which operated Lockheed Hudsons . The squadron was deployed to Dutch Timor in December , and saw action against Japanese forces in the South West Pacific . After returning to Australia in February 1942 , Headlam held staff appointments and training commands , finishing the war a group captain . 
+
+[2025-03-12T17:23:01.775+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Air Vice Marshal Fr... to validation/validation_49.txt
+[2025-03-12T17:23:01.782+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Headlam served as Officer Commanding North @-@ Western Area in 1946 , and as Director of Training from 1947 to 1950 . In 1950 – 51 , during the Malayan Emergency , he was stationed at Singapore as commander of No. 90 ( Composite ) Wing and , later , RAF Tengah . He twice served as acting Air Member for Personnel , in 1957 and 1959 – 60 , receiving appointment as a Commander of the Order of the British Empire in 1958 . Promoted air vice marshal , he successively held the positions of Air Officer Commanding ( AOC ) Operational Command in 1961 – 62 , AOC No. 224 Group RAF from 1962 to 1965 during the Indonesia – Malaysia Konfrontasi , Deputy Chief of the Air Staff in 1965 – 66 , and AOC Support Command in 1966 – 67 . He was appointed a Companion of the Order of the Bath in 1965 . Following a posting to London as Head of the Australian Joint Services Staff from 1968 to 1971 , he retired from the Air Force and died in Melbourne five years later . 
+
+[2025-03-12T17:23:01.782+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Headlam served as O... to validation/validation_50.txt
+[2025-03-12T17:23:01.791+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.792+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_51.txt
+[2025-03-12T17:23:01.839+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Early career = = 
+
+[2025-03-12T17:23:01.840+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Early career = ... to validation/validation_52.txt
+[2025-03-12T17:23:01.846+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.846+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_53.txt
+[2025-03-12T17:23:01.890+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The son of farmers Malcolm and Hilda Headlam , Frank Headlam was born on 15 July 1914 in Launceston , Tasmania . He was schooled at Clemes College , Hobart , and matriculated in 1932 . Against the wishes of his parents he joined the Royal Australian Air Force ( RAAF ) as an air cadet on 16 January 1934 . He underwent flying instruction with No. 1 Flying Training School ( FTS ) at RAAF Point Cook , Victoria , and was commissioned as a pilot officer on 1 January 1935 . 
+
+[2025-03-12T17:23:01.891+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The son of farmers ... to validation/validation_54.txt
+[2025-03-12T17:23:01.897+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  After completing a conversion course , Headlam was assigned to the Seaplane Squadron at Point Cook . No larger than a flight according to the official history of the pre @-@ war RAAF , Seaplane Squadron was part of No. 1 FTS and operated Supermarine Southampton flying boats and de Havilland Gipsy Moth floatplanes , among other types . During this posting Headlam was promoted to flying officer , on 1 July 1935 , and wrote a paper on national defence in which he suggested that with " strong air forces , naval forces ( including submarines ) , and fixed defences , Australia may be made practically invulnerable " . According to Air Force historian Alan Stephens , this paper " in effect , defined the ' anti @-@ lodgment ' concept which has been a persistent feature of RAAF strategic thinking " . 
+
+[2025-03-12T17:23:01.898+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  After completing a ... to validation/validation_55.txt
+[2025-03-12T17:23:01.903+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Headlam completed a flying instructors course in July 1936 and joined the staff of No. 1 FTS . He was promoted to flight lieutenant on 1 March 1937 . Commencing in July 1938 , he was one of six students to take part in the RAAF 's first Long Specialist Navigation Course , run by Flight Lieutenants Bill Garing and Alister Murdoch at Point Cook . The course involved several epic training flights that attracted considerable media attention , including a twelve @-@ day , 10 @,@ 800 @-@ kilometre ( 6 @,@ 700 mi ) round @-@ Australia trip by three Avro Ansons , one of which was piloted by Headlam , in November . The following month , Headlam led the three Ansons on a six @-@ day journey back and forth over Central Australia . He subsequently passed the navigation course with a special distinction . On 27 January 1939 he was posted to RAAF Station Laverton , Victoria , as a flight commander . He served initially with No. 2 Squadron , before transferring to No. 1 Squadron on 29 August . Both units operated Ansons . 
+
+[2025-03-12T17:23:01.904+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Headlam completed a... to validation/validation_56.txt
+[2025-03-12T17:23:01.910+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.911+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_57.txt
+[2025-03-12T17:23:01.955+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = World War II = = 
+
+[2025-03-12T17:23:01.956+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = World War II = ... to validation/validation_58.txt
+[2025-03-12T17:23:01.961+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:01.962+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_59.txt
+[2025-03-12T17:23:02.007+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Following the outbreak of World War II , No. 1 Squadron was engaged in convoy escort and maritime reconnaissance duties off south @-@ eastern Australia . Headlam continued to serve with the squadron as a flight commander until 15 January 1940 , when he was assigned to Headquarters Laverton as the station navigation officer . On 27 March he was posted to the staff of RAAF Headquarters , Melbourne . He was promoted to squadron leader on 1 June 1940 . Two weeks later he married Katherine Bridge at St Paul 's Anglican Church in Frankston ; the couple would have a son and a daughter . 
+
+[2025-03-12T17:23:02.007+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Following the outbr... to validation/validation_60.txt
+[2025-03-12T17:23:02.013+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Headlam was given command of No. 2 Squadron at Laverton on 15 April 1941 , and raised to wing commander on 1 July . Equipped with Lockheed Hudsons , the squadron mainly conducted maritime patrols in southern waters until 5 December , when four of its aircraft were ordered to Darwin , Northern Territory , in response to fears of Japanese aggression in the Pacific . On 7 December , this detachment established itself at Penfui , near Koepang in Dutch Timor , while No. 2 Squadron 's eight remaining Hudsons were stationed at Darwin on standby . The following day , aware that Australia was now at war in the Pacific , one of the Penfui @-@ based Hudsons attacked the Japanese pearler Nanyo Maru , which was suspected of being a radio ship , and forced it aground . By 12 December , Headlam had transferred to Penfui as commanding officer of the base , as well as No. 2 Squadron . 
+
+[2025-03-12T17:23:02.014+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Headlam was given c... to validation/validation_61.txt
+[2025-03-12T17:23:02.019+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  During January 1942 , No. 2 Squadron 's aircraft were dispersed at Penfui , Boeroe Island , and Darwin . The Penfui detachment attacked Japanese shipping taking part in the invasion of Celebes . Two Hudsons shot down or damaged three Japanese floatplanes that attacked them as they were bombing a transport ship on 11 January ; the next day both Hudsons were themselves shot down by Mitsubishi Zeros . Penfui was bombed by the Japanese for the first time on 26 January 1942 , and attacked regularly thereafter , damaging some aircraft . The intact Hudsons were withdrawn to Darwin but Headlam and his staff remained at Penfui to enable the base to be used by aircraft during reconnaissance missions from Australia . On 18 February , Headlam was ordered to evacuate all his personnel except a small party to demolish the airfield with assistance from Sparrow Force . He returned to Darwin the following day , just as the city experienced its first raid by the Japanese . Four of No. 2 Squadron 's Hudsons were destroyed in the attack ; the remainder were relocated to Daly Waters , where they continued to carry out reconnaissance and bombing missions against Japanese targets in Timor . 
+
+[2025-03-12T17:23:02.021+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  During January 1942... to validation/validation_62.txt
+[2025-03-12T17:23:02.029+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Headlam remained in Darwin as Controller of Operations at Headquarters North @-@ Western Area Command until 12 May 1942 , when he was posted to Nhill , Victoria , as commanding officer of No. 2 Air Navigation School , operating Ansons . No. 97 ( Reserve ) Squadron was formed from the school 's personnel in June . On 20 July 1943 , Headlam took command of No. 2 Air Observer School ( AOS ) , also operating Ansons , at Mount Gambier , South Australia . He was promoted to group captain on 1 December 1943 , and was appointed the inaugural commanding officer of No. 3 AOS , operating Ansons and Fairey Battles out of Port Pirie , on 9 December . After handing over command of No. 3 AOS , he commenced studies at RAAF Staff School in Mount Martha , Victoria , on 2 October 1944 . He was appointed senior ***istrative staff officer at North @-@ Western Area Command on 12 January 1945 . 
+
+[2025-03-12T17:23:02.029+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Headlam remained in... to validation/validation_63.txt
+[2025-03-12T17:23:02.036+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.036+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_64.txt
+[2025-03-12T17:23:02.081+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Post @-@ war career = = 
+
+[2025-03-12T17:23:02.081+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Post @-@ war ca... to validation/validation_65.txt
+[2025-03-12T17:23:02.087+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.087+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_66.txt
+[2025-03-12T17:23:02.132+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Headlam became Officer Commanding North @-@ Western Area in January 1946 . Posted to Britain at the end of the year , he attended the Royal Air Force Staff College , Andover , and served with RAAF Overseas Headquarters , London . On his return to Australia , in November 1947 , he became Director of Training at RAAF Headquarters . In November 1950 , Headlam was appointed to take over command of No. 90 ( Composite ) Wing from Group Captain Paddy Heffernan . Headquartered at RAF Changi , Singapore , No. 90 Wing controlled RAAF units operating during the Malayan Emergency : No. 1 ( Bomber ) Squadron , flying Avro Lincolns , and No. 38 ( Transport ) Squadron , flying Douglas C @-@ 47 Dakotas . The Lincolns conducted area bombing missions over communist @-@ held territory , as well as strikes against pinpoint targets . The Dakotas were tasked with courier flights , VIP transport and medical evacuations across South East Asia , and in Malaya with airlifting troops and cargo , dropping supplies to friendly forces and despatching propaganda leaflets . Headlam was slightly injured on 20 December , when a No. 38 Squadron Dakota he was co @-@ piloting on a supply drop crash @-@ landed at Kampong Aur in Pahang , following engine failure . In August 1951 he was named commander of RAF Tengah , Singapore , in addition to his post as commanding officer of No. 90 Wing . Headlam handed over command of No. 90 Wing in December 1951 . 
+
+[2025-03-12T17:23:02.133+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Headlam became Offi... to validation/validation_67.txt
+[2025-03-12T17:23:02.140+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  On 19 February 1952 , Headlam became senior air staff officer ( SASO ) at Eastern Area Command in Penrith , New South Wales . During his term as SASO , the RAAF began re @-@ equipping with English Electric Canberra jet bombers and CAC Sabre jet fighters . The Air Force also underwent a major organisational change , as it transitioned from a geographically based command @-@ and @-@ control system to one based on function , resulting in the establishment of Home ( operational ) , Training , and Maintenance Commands . Eastern Area Command , considered a de facto operational headquarters owing to the preponderance of combat units under its control , was reorganised as Home Command in October 1953 . Headlam was appointed an Officer of the Order of the British Empire ( OBE ) in the 1954 New Year Honours for his " exceptional ability and devotion to duty " . He was promoted to acting air commodore in May . His appointment as aide @-@ de @-@ camp to Queen Elizabeth II was announced on 7 October 1954 . 
+
+[2025-03-12T17:23:02.140+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  On 19 February 1952... to validation/validation_68.txt
+[2025-03-12T17:23:02.147+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Headlam was promoted to substantive air commodore on 1 January 1955 . In November he was posted to RAAF Overseas Headquarters , London , and the following year undertook studies at the Imperial Defence College . Returning to Australia , he served as acting Air Member for Personnel at the Department of Air , Canberra , from 19 March to 21 October 1957 , between the terms of Air Vice Marshals Fred Scherger and Allan Walters , and again from 24 August 1959 to 28 March 1960 , between the terms of Walters and Air Vice Marshal Bill Hely . In this role Headlam occupied a seat on the Air Board , the service 's controlling body that comprised its senior officers and was chaired by the Chief of the Air Staff . He was also one of two RAAF representatives to serve on a committee , chaired by businessman William John Allison , examining conditions of defence service ; the committee 's recommendations led to a doubling of flight pay , among other improvements . Headlam 's other positions at the Department of Air included Air Commodore Plans from October 1957 to January 1959 , and Director General Plans and Policy from January to August 1959 . The latter assignment put him in charge of the RAAF 's Directorate of Intelligence . Headlam was appointed a Commander of the Order of the British Empire ( CBE ) in the 1958 Queen 's Birthday Honours , gazetted on 3 June . In May 1960 he became acting Deputy Chief of the Air Staff . 
+
+[2025-03-12T17:23:02.148+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Headlam was promote... to validation/validation_69.txt
+[2025-03-12T17:23:02.157+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  On 30 January 1961 , Headlam joined the staff of Operational Command ( OPCOM ) , the successor organisation to Home Command , responsible for the direction of RAAF operational units . He took over as Air Officer Commanding ( AOC ) OPCOM from Air Vice Marshal Val Hancock in April . Headlam was promoted to air vice marshal on 29 May . On 17 July 1962 , he was posted to RAAF Base Butterworth , Malaya , and took up the appointment of AOC No. 224 Group RAF in Singapore one week later . He was succeeded as AOC OPCOM by Air Vice Marshal Alister Murdoch . As AOC No. 224 Group , Headlam had overall responsibility for regional air defence and offensive air operations during the Brunei Rebellion in December 1962 , and the subsequent Konfrontasi between Indonesia and Malaysia that officially began the following month . Divorced from his first wife in 1956 , he married widowed social worker Vernon Spence at the Sydney registry office on 20 January 1964 . He handed over No. 224 Group to Air Vice Marshal Christopher Foxley @-@ Norris on 30 November . 
+
+[2025-03-12T17:23:02.158+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  On 30 January 1961 ... to validation/validation_70.txt
+[2025-03-12T17:23:02.166+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Returning to Australia , Headlam became Deputy Chief of the Air Staff ( DCAS ) on 26 January 1965 . He was appointed a Companion of the Order of the Bath ( CB ) " in recognition of distinguished service in the Borneo Territories " on 22 June . His tenure as DCAS coincided with the most significant rearmament program the Air Force had undertaken since World War II , and with manpower shortages stemming from this expansion and from Australia 's increasing involvement in the security of South East Asia . The first RAAF helicopters were committed to the Vietnam War towards the end of his term , and he travelled to Saigon with the Chief of the General Staff , Lieutenant General Sir John Wilton , in March 1966 to plan the deployment . The year before , Wilton had recommended to Air Marshal Murdoch , the Chief of the Air Staff , that two Iroquois be sent to Vietnam for familiarisation purposes ; Murdoch had rebuffed Wilton , and the RAAF helicopter squadron was considered underprepared for its army co @-@ operation role when it finally did deploy . Headlam succeeded Air Vice Marshal Douglas Candy as AOC Support Command , Melbourne , on 8 August 1966 . Support Command had been formed in 1959 , by merging the RAAF 's former Training and Maintenance Commands . On 1 January 1968 , Headlam was posted to London as Head of the Australian Joint Services Staff . He served as an Extra Gentleman Usher to the Queen from 17 November 1970 to 5 June 1971 . 
+
+[2025-03-12T17:23:02.166+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Returning to Austra... to validation/validation_71.txt
+[2025-03-12T17:23:02.173+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.174+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_72.txt
+[2025-03-12T17:23:02.219+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Retirement = = 
+
+[2025-03-12T17:23:02.220+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Retirement = = ... to validation/validation_73.txt
+[2025-03-12T17:23:02.226+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.226+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_74.txt
+[2025-03-12T17:23:02.272+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Returning to Australia in June 1971 , Headlam took resettlement leave before retiring from the Air Force on 3 August . He made his home in Melbourne , where he died aged 62 on 23 December 1976 , after a lengthy battle with cancer . Survived by his children and his second wife , he was given a private funeral and cremated at Springvale Crematorium . 
+
+[2025-03-12T17:23:02.272+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Returning to Austra... to validation/validation_75.txt
+[2025-03-12T17:23:02.279+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.280+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_76.txt
+[2025-03-12T17:23:02.325+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.325+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_77.txt
+[2025-03-12T17:23:02.373+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = M @-@ 82 ( Michigan highway ) = 
+
+[2025-03-12T17:23:02.373+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = M @-@ 82 ( Michig... to validation/validation_78.txt
+[2025-03-12T17:23:02.388+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.389+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_79.txt
+[2025-03-12T17:23:02.441+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M @-@ 82 is a state trunkline in the Lower Peninsula in the US state of Michigan that travels between Fremont and Howard City . The section between Newaygo and Howard City travels through Fremont and along the southern edge of Manistee National Forest . The current version of M @-@ 82 is actually the second in the state ; the first usage appeared in the Upper Peninsula by 1919 . The Lower Peninsula routing has been in use since the 1920s . Various extensions and truncations have shifted the terminus as far west as New Era or Hesperia in the past . The current route was finalized in the late 1970s 
+
+[2025-03-12T17:23:02.441+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M @-@ 82 is a state... to validation/validation_80.txt
+[2025-03-12T17:23:02.463+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.464+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_81.txt
+[2025-03-12T17:23:02.510+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Route description = = 
+
+[2025-03-12T17:23:02.510+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Route descripti... to validation/validation_82.txt
+[2025-03-12T17:23:02.520+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.521+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_83.txt
+[2025-03-12T17:23:02.569+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  M @-@ 82 begins at a junction with M @-@ 120 and B @-@ 96 west of Fremont . This junction is at a tripoint of county lines . M @-@ 120 forms the north – south Newaygo – Oceana and Newaygo – Muskegon county lines . B @-@ 96 , which forms the east – west Oceana – Muskegon county line runs due west of the intersection . M @-@ 82 exits the intersection to the east . The highway runs along 48th Street through rural farms into the community of Fremont . The road , now called Main Street , passes through the downtown area and M @-@ 82 turns south along Stewart Avenue out of town . The highway rounds a curve and transitions to 72nd Street running eastward through more farm land . As the trunkline approaches Newaygo , the terrain becomes more wooded near the Muskegon River . M @-@ 82 follows Fremont Street east to a junction with M @-@ 37 . The two highways merge and run concurrently over the river and into downtown on State Street . South of downtown , M @-@ 82 turns east again , independent of M @-@ 37 , and runs along 82nd Street on the southern edge of the Manistee National Forest . The east end of M @-@ 82 is at exit 118 on US 131 / M @-@ 46 west of Howard City . 
+
+[2025-03-12T17:23:02.570+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  M @-@ 82 begins at ... to validation/validation_84.txt
+[2025-03-12T17:23:02.578+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The Michigan Department of Transportation ( MDOT ) , as a part of its maintenance responsibilities , tracks the volume of traffic using its roadways . These levels are expressed in terms of a metric called average annual daily traffic ( AADT ) , which is a calculation of the traffic along a segment of road for any average day of the year . In 2009 , the department 's measurements indicated that a segment of M @-@ 82 west of Fremont had the peak volume for the highway at 16 @,@ 532 vehicles daily . The traffic nadir was 4 @,@ 018 vehicles east of Newaygo . In addition , MDOT has not had any section of the highway listed on the National Highway System , a network of roads important to the country 's economy , defense , and mobility . 
+
+[2025-03-12T17:23:02.579+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The Michigan Depart... to validation/validation_85.txt
+[2025-03-12T17:23:02.588+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.589+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_86.txt
+[2025-03-12T17:23:02.640+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = History = = 
+
+[2025-03-12T17:23:02.641+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = History = = 
+... to validation/validation_87.txt
+[2025-03-12T17:23:02.648+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.648+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_88.txt
+[2025-03-12T17:23:02.694+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.694+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_89.txt
+[2025-03-12T17:23:02.740+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Previous designation = = = 
+
+[2025-03-12T17:23:02.741+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Previous desi... to validation/validation_90.txt
+[2025-03-12T17:23:02.750+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.750+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_91.txt
+[2025-03-12T17:23:02.796+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The first usage of M @-@ 82 was in the Upper Peninsula by July 1 , 1919 . The trunkline started at M @-@ 25 and ran north of Newberry to the vicinity of Eight Mile Corner . It was later replaced by M @-@ 48 in 1926 . 
+
+[2025-03-12T17:23:02.797+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The first usage of ... to validation/validation_92.txt
+[2025-03-12T17:23:02.804+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.805+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_93.txt
+[2025-03-12T17:23:02.851+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = = Current designation = = = 
+
+[2025-03-12T17:23:02.852+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = = Current desig... to validation/validation_94.txt
+[2025-03-12T17:23:02.864+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.865+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_95.txt
+[2025-03-12T17:23:02.914+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  The current M @-@ 82 dates back to 1926 . It ran from US 31 in Hart to the northern junction of US 131 and M @-@ 46 in Howard City . The highway was routed through Ferry , Hesperia and Fremont , replacing M @-@ 41 . In late 1936 , M @-@ 46 was extended along the section between Newaygo and Howard City , forming a M @-@ 46 / M @-@ 82 concurrency to fill a gap in the M @-@ 46 routing . This concurrent section became just M @-@ 46 in 1938 , shortening M @-@ 82 back to the northern M @-@ 37 junction in Newaygo . The highway was moved to a new alignment west of Ferry in late 1947 or early 1948 . Instead of heading northwesterly to Hart , it was continued west to end in Shelby . 
+
+[2025-03-12T17:23:02.915+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  The current M @-@ 8... to validation/validation_96.txt
+[2025-03-12T17:23:02.925+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  Two realignments in 1963 and 1964 rerouted the western end of the highway again . This time it was realigned to run from Hesperia to New Era , bypassing Ferry . A larger change around 1969 reconfigured the highway designations in Oceana County . M @-@ 20 replaced M @-@ 82 west of Hesperia , to end at New Era instead of Muskegon . The new M @-@ 120 designation replaced M @-@ 20 south of Hesperia . M @-@ 82 now ran from Hesperia to Newaygo only . The length of the highway was increased in 1973 when the eastern end was moved back to Howard City . M @-@ 46 was rerouted to follow the US 131 freeway south of Howard City to Cedar Springs , and replaced M @-@ 57 between Cedar Springs and Casnovia . This freed up the Newaygo to Howard City highway for a return to the M @-@ 82 designation . The last change came in 1978 when the concurrency with M @-@ 120 was eliminated in favor of M @-@ 120 . The M @-@ 82 designation was truncated at this time to the junction west of Fremont , resulting in the current highway routing . 
+
+[2025-03-12T17:23:02.925+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  Two realignments in... to validation/validation_97.txt
+[2025-03-12T17:23:02.934+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T17:23:02.935+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to validation/validation_98.txt
+[2025-03-12T17:23:02.981+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit:  = = Major intersections = = 
+
+[2025-03-12T17:23:02.981+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading  = = Major intersect... to validation/validation_99.txt
+[2025-03-12T17:23:02.989+0000] {manage_buckets.py:31} INFO - [Data manager] Data successfully uploaded to the S3 bucket named raw
+[2025-03-12T17:23:02.990+0000] {manage_buckets.py:34} INFO - [Data manager] Listing folders in bucket: raw
+[2025-03-12T17:23:03.139+0000] {manage_buckets.py:38} INFO - [Data manager] Folder : test/ - File count: 100
+[2025-03-12T17:23:03.140+0000] {manage_buckets.py:38} INFO - [Data manager] Folder : train/ - File count: 100
+[2025-03-12T17:23:03.141+0000] {manage_buckets.py:38} INFO - [Data manager] Folder : validation/ - File count: 100
+[2025-03-12T17:23:03.142+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-12T17:23:03.158+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-12T17:23:03.159+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_lake_pipeline, task_id=process_to_raw, run_id=manual__2025-03-12T17:22:46.887163+00:00, execution_date=20250312T172246, start_date=20250312T172251, end_date=20250312T172303
+[2025-03-12T17:23:03.213+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-12T17:23:03.238+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-12T17:23:03.241+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

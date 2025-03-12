@@ -15,8 +15,10 @@ RUN apt-get update && \
 COPY . .
 ENV PYTHONPATH=/app
 
+EXPOSE 5000
+
 # Création des buckets S3 via LocalStack
 CMD aws --endpoint-url=http://localstack:4566 s3 mb s3://raw && \
     aws --endpoint-url=http://localstack:4566 s3 mb s3://staging && \
     aws --endpoint-url=http://localstack:4566 s3 mb s3://curated && \
-    tail -f /dev/null
+    python src/app.py

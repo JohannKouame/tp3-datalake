@@ -1,0 +1,38 @@
+[2025-03-12T13:19:12.861+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-12T13:19:12.890+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T13:19:06.923097+00:00 [queued]>
+[2025-03-12T13:19:12.906+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T13:19:06.923097+00:00 [queued]>
+[2025-03-12T13:19:12.906+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-12T13:19:12.925+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): process_to_raw> on 2025-03-12 13:19:06.923097+00:00
+[2025-03-12T13:19:12.930+0000] {standard_task_runner.py:72} INFO - Started process 219 to run task
+[2025-03-12T13:19:12.935+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_lake_pipeline', 'process_to_raw', 'manual__2025-03-12T13:19:06.923097+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline_dag.py', '--cfg-path', '/tmp/tmpn_leus94']
+[2025-03-12T13:19:12.938+0000] {standard_task_runner.py:105} INFO - Job 30: Subtask process_to_raw
+[2025-03-12T13:19:12.993+0000] {logging_mixin.py:190} WARNING - /usr/local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-12T13:19:13.037+0000] {task_command.py:467} INFO - Running <TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T13:19:06.923097+00:00 [running]> on host ***-scheduler
+[2025-03-12T13:19:13.339+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_lake_pipeline' AIRFLOW_CTX_TASK_ID='process_to_raw' AIRFLOW_CTX_EXECUTION_DATE='2025-03-12T13:19:06.923097+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-12T13:19:06.923097+00:00'
+[2025-03-12T13:19:13.342+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-12T13:19:13.359+0000] {manage_buckets.py:19} INFO - [Data manager] Downloading data from HuggingFace...
+[2025-03-12T13:19:17.968+0000] {logging_mixin.py:190} WARNING - Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]
+[2025-03-12T13:19:18.029+0000] {logging_mixin.py:190} WARNING - Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 72587.83 examples/s]
+[2025-03-12T13:19:18.030+0000] {logging_mixin.py:190} WARNING - Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]
+[2025-03-12T13:19:18.124+0000] {logging_mixin.py:190} WARNING - Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 396119.36 examples/s]
+[2025-03-12T13:19:18.126+0000] {logging_mixin.py:190} WARNING - Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]
+[2025-03-12T13:19:18.146+0000] {logging_mixin.py:190} WARNING - Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 196915.68 examples/s]
+[2025-03-12T13:19:18.164+0000] {manage_buckets.py:22} INFO - [Data manager] Data successfully downloaded.
+[2025-03-12T13:19:18.165+0000] {manage_buckets.py:25} INFO - [Data manager] Transferring data to S3 bucket...
+[2025-03-12T13:19:18.166+0000] {aws_s3_repository.py:65} INFO - [AWS S3] 🚀 Uploading into raw ...
+[2025-03-12T13:19:18.166+0000] {aws_s3_repository.py:68} INFO - [AWS S3] Transferring train data...
+[2025-03-12T13:19:18.167+0000] {aws_s3_repository.py:69} INFO - [AWS S3] split_data: Dataset({
+    features: ['text'],
+    num_rows: 36718
+})
+[2025-03-12T13:19:18.311+0000] {aws_s3_repository.py:71} INFO - [AWS S3] Unit: 
+[2025-03-12T13:19:18.312+0000] {aws_s3_repository.py:77} INFO - [AWS S3] Uploading ... to train/train_0.txt
+[2025-03-12T13:19:18.956+0000] {aws_s3.py:36} CRITICAL - [S3 Client] Error : An error occurred (InvalidAccessKeyId) when calling the PutObject operation: The AWS Access Key Id you provided does not exist in our records.
+[2025-03-12T13:19:18.960+0000] {aws_s3_repository.py:82} CRITICAL - [AWS S3] Error while uploading data into raw ...
+[2025-03-12T13:19:18.962+0000] {manage_buckets.py:37} CRITICAL - [Data manager] Error during uploading files to S3 bucket named raw
+[2025-03-12T13:19:18.964+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-12T13:19:18.980+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-12T13:19:18.981+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_lake_pipeline, task_id=process_to_raw, run_id=manual__2025-03-12T13:19:06.923097+00:00, execution_date=20250312T131906, start_date=20250312T131912, end_date=20250312T131918
+[2025-03-12T13:19:19.065+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-12T13:19:19.086+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-12T13:19:19.093+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

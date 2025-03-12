@@ -1,0 +1,29 @@
+[2025-03-12T16:52:24.820+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-12T16:52:24.838+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_lake_pipeline.transform_raw_to_staging manual__2025-03-12T16:52:14.305213+00:00 [queued]>
+[2025-03-12T16:52:24.846+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_lake_pipeline.transform_raw_to_staging manual__2025-03-12T16:52:14.305213+00:00 [queued]>
+[2025-03-12T16:52:24.847+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-12T16:52:24.860+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): transform_raw_to_staging> on 2025-03-12 16:52:14.305213+00:00
+[2025-03-12T16:52:24.865+0000] {standard_task_runner.py:72} INFO - Started process 319 to run task
+[2025-03-12T16:52:24.874+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_lake_pipeline', 'transform_raw_to_staging', 'manual__2025-03-12T16:52:14.305213+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline_dag.py', '--cfg-path', '/tmp/tmpziqlf4f6']
+[2025-03-12T16:52:24.875+0000] {standard_task_runner.py:105} INFO - Job 19: Subtask transform_raw_to_staging
+[2025-03-12T16:52:24.891+0000] {logging_mixin.py:190} WARNING - /usr/local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-12T16:52:24.921+0000] {task_command.py:467} INFO - Running <TaskInstance: data_lake_pipeline.transform_raw_to_staging manual__2025-03-12T16:52:14.305213+00:00 [running]> on host ***-scheduler
+[2025-03-12T16:52:24.996+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_lake_pipeline' AIRFLOW_CTX_TASK_ID='transform_raw_to_staging' AIRFLOW_CTX_EXECUTION_DATE='2025-03-12T16:52:14.305213+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-12T16:52:14.305213+00:00'
+[2025-03-12T16:52:24.998+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-12T16:52:25.009+0000] {manage_buckets.py:44} INFO - [Data manager] Prefix(s) : ['test', 'train', 'validation']
+[2025-03-12T16:52:25.009+0000] {manage_buckets.py:46} INFO - [Data manager] Processessing data from : test
+[2025-03-12T16:52:25.009+0000] {aws_s3_repository.py:33} INFO - [AWS S3] Getting list of raw's files...
+[2025-03-12T16:52:25.021+0000] {aws_s3_repository.py:54} CRITICAL - [AWS S3] Error while processing data raw ... : An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation: The specified bucket does not exist
+[2025-03-12T16:52:25.021+0000] {manage_buckets.py:46} INFO - [Data manager] Processessing data from : train
+[2025-03-12T16:52:25.021+0000] {aws_s3_repository.py:33} INFO - [AWS S3] Getting list of raw's files...
+[2025-03-12T16:52:25.027+0000] {aws_s3_repository.py:54} CRITICAL - [AWS S3] Error while processing data raw ... : An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation: The specified bucket does not exist
+[2025-03-12T16:52:25.028+0000] {manage_buckets.py:46} INFO - [Data manager] Processessing data from : validation
+[2025-03-12T16:52:25.028+0000] {aws_s3_repository.py:33} INFO - [AWS S3] Getting list of raw's files...
+[2025-03-12T16:52:25.033+0000] {aws_s3_repository.py:54} CRITICAL - [AWS S3] Error while processing data raw ... : An error occurred (NoSuchBucket) when calling the ListObjectsV2 operation: The specified bucket does not exist
+[2025-03-12T16:52:25.033+0000] {manage_buckets.py:57} ERROR - [Data manager] Data processing failed.
+[2025-03-12T16:52:25.034+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-12T16:52:25.043+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-12T16:52:25.044+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_lake_pipeline, task_id=transform_raw_to_staging, run_id=manual__2025-03-12T16:52:14.305213+00:00, execution_date=20250312T165214, start_date=20250312T165224, end_date=20250312T165225
+[2025-03-12T16:52:25.088+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-12T16:52:25.105+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-12T16:52:25.110+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

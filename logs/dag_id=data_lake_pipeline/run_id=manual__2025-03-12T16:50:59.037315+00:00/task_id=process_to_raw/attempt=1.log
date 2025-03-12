@@ -1,0 +1,38 @@
+[2025-03-12T16:51:36.806+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-12T16:51:36.828+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T16:50:59.037315+00:00 [queued]>
+[2025-03-12T16:51:36.838+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T16:50:59.037315+00:00 [queued]>
+[2025-03-12T16:51:36.839+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-12T16:51:36.861+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): process_to_raw> on 2025-03-12 16:50:59.037315+00:00
+[2025-03-12T16:51:36.865+0000] {standard_task_runner.py:72} INFO - Started process 210 to run task
+[2025-03-12T16:51:36.870+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_lake_pipeline', 'process_to_raw', 'manual__2025-03-12T16:50:59.037315+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline_dag.py', '--cfg-path', '/tmp/tmp39wdh9rz']
+[2025-03-12T16:51:36.872+0000] {standard_task_runner.py:105} INFO - Job 14: Subtask process_to_raw
+[2025-03-12T16:51:36.901+0000] {logging_mixin.py:190} WARNING - /usr/local/lib/python3.10/site-packages/***/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-12T16:51:36.959+0000] {task_command.py:467} INFO - Running <TaskInstance: data_lake_pipeline.process_to_raw manual__2025-03-12T16:50:59.037315+00:00 [running]> on host ***-scheduler
+[2025-03-12T16:51:37.086+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_lake_pipeline' AIRFLOW_CTX_TASK_ID='process_to_raw' AIRFLOW_CTX_EXECUTION_DATE='2025-03-12T16:50:59.037315+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-12T16:50:59.037315+00:00'
+[2025-03-12T16:51:37.090+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-12T16:51:37.110+0000] {manage_buckets.py:22} INFO - [Data manager] Downloading data from HuggingFace...
+[2025-03-12T16:51:41.667+0000] {logging_mixin.py:190} WARNING - Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]
+[2025-03-12T16:51:41.700+0000] {logging_mixin.py:190} WARNING - Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 133226.27 examples/s]
+[2025-03-12T16:51:41.701+0000] {logging_mixin.py:190} WARNING - Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]
+[2025-03-12T16:51:41.778+0000] {logging_mixin.py:190} WARNING - Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 482482.41 examples/s]
+[2025-03-12T16:51:41.779+0000] {logging_mixin.py:190} WARNING - Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]
+[2025-03-12T16:51:41.790+0000] {logging_mixin.py:190} WARNING - Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 364174.65 examples/s]
+[2025-03-12T16:51:41.808+0000] {manage_buckets.py:25} INFO - [Data manager] Data successfully downloaded.
+[2025-03-12T16:51:41.809+0000] {manage_buckets.py:28} INFO - [Data manager] Transferring data to S3 bucket...
+[2025-03-12T16:51:41.809+0000] {aws_s3_repository.py:79} INFO - [AWS S3] 🚀 Uploading into raw ...
+[2025-03-12T16:51:41.810+0000] {aws_s3_repository.py:82} INFO - [AWS S3] Transferring train data...
+[2025-03-12T16:51:41.810+0000] {aws_s3_repository.py:83} INFO - [AWS S3] split_data: Dataset({
+    features: ['text'],
+    num_rows: 36718
+})
+[2025-03-12T16:51:41.917+0000] {aws_s3_repository.py:85} INFO - [AWS S3] Unit: 
+[2025-03-12T16:51:41.918+0000] {aws_s3_repository.py:91} INFO - [AWS S3] Uploading ... to train/train_0.txt
+[2025-03-12T16:51:41.939+0000] {aws_s3.py:30} CRITICAL - [S3 Client] Error : An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
+[2025-03-12T16:51:41.942+0000] {aws_s3_repository.py:96} CRITICAL - [AWS S3] Error while uploading data into raw ...
+[2025-03-12T16:51:41.943+0000] {manage_buckets.py:40} CRITICAL - [Data manager] Error during uploading files to S3 bucket named raw
+[2025-03-12T16:51:41.945+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-12T16:51:41.965+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-12T16:51:41.965+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_lake_pipeline, task_id=process_to_raw, run_id=manual__2025-03-12T16:50:59.037315+00:00, execution_date=20250312T165059, start_date=20250312T165136, end_date=20250312T165141
+[2025-03-12T16:51:42.027+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-12T16:51:42.061+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-12T16:51:42.067+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
