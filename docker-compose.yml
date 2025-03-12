@@ -1,50 +1,48 @@
 version: '3.8'
 
-networks:
-  airflow-net:
-    driver: bridge
-
 services:
-  python:
+  # Flask application container
+  flask-app:
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
-      - .env
+      - .env  # Load environment variables from a .env file
+    ports:
+      - "5001:5000"  # Expose port 5000 in the container as 5001 on the host
     volumes:
-      - .:/app
+      - .:/app  # Mount the current directory to /app in the container
     depends_on:
       localstack:
-        condition: service_healthy
+        condition: service_healthy  # Wait for LocalStack to be healthy before starting
     environment:
-      - PYTHONPATH=/app
-      - AWS_ACCESS_KEY_ID=root
+      - PYTHONPATH=/app  # Set Python path
+      - AWS_ACCESS_KEY_ID=root  # Mock AWS credentials for LocalStack
       - AWS_SECRET_ACCESS_KEY=root
       - AWS_DEFAULT_REGION=us-east-1
-      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_ENDPOINT_URL=http://localstack:4566  # LocalStack endpoint for AWS services
     networks:
-      - airflow-net
+      - default
 
+  # LocalStack container (for mocking AWS services)
   localstack:
     image: localstack/localstack:latest
     container_name: localstack
     environment:
-      - SERVICES=s3
-      - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
-      - LAMBDA_EXECUTOR=docker
+      - SERVICES=s3  # Only start the S3 service
+      - DEBUG=1  # Enable debug mode
+      - DATA_DIR=/tmp/localstack/data  # Directory to store LocalStack data
+      - LAMBDA_EXECUTOR=docker  # Set Lambda executor to docker
       - DEFAULT_REGION=us-east-1
-      - AWS_ACCESS_KEY_ID=root
+      - AWS_ACCESS_KEY_ID=root  # Mock AWS credentials
       - AWS_SECRET_ACCESS_KEY=root
       - AWS_DEFAULT_REGION=us-east-1
-      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_ENDPOINT_URL=http://localstack:4566  # LocalStack endpoint for AWS services
     ports:
-      - "4566:4566"
+      - "4566:4566"  # Expose LocalStack API on port 4566
     volumes:
-      - './localstack:/var/lib/localstack'
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    networks:
-      - airflow-net
+      - './localstack:/var/lib/localstack'  # Mount volume for LocalStack data
+      - "/var/run/docker.sock:/var/run/docker.sock"  # Allow LocalStack to use Docker
     command: >
       sh -c "
       until curl -s http://localhost:4566/_localstack/health | grep '\"s3\": \"running\"'; do
@@ -56,74 +54,79 @@ services:
       aws --endpoint-url=http://localhost:4566 s3 mb s3://staging &&
       aws --endpoint-url=http://localhost:4566 s3 mb s3://curated;
       echo 'All buckets created!';
-      exec localstack start"
+      exec localstack start"  # Wait until LocalStack is ready and create S3 buckets
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
       interval: 5s
       retries: 5
       start_period: 5s
-      timeout: 5s
+      timeout: 5s  # Check if LocalStack is healthy
+    networks:
+      - default
 
+  # PostgreSQL container (for Airflow backend)
   postgres:
     image: postgres:13
     container_name: postgres
     environment:
-      - POSTGRES_USER=airflow
-      - POSTGRES_PASSWORD=airflow
-      - POSTGRES_DB=airflow
+      - POSTGRES_USER=airflow  # Set PostgreSQL user
+      - POSTGRES_PASSWORD=airflow  # Set PostgreSQL password
+      - POSTGRES_DB=airflow  # Set database name
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data  # Persist PostgreSQL data
     networks:
-      - airflow-net
+      - default
 
+  # Airflow web server container
   airflow-webserver:
     build: .
     image: apache/airflow:2.7.1
     container_name: airflow-webserver
     hostname: airflow-webserver
     depends_on:
-      - postgres
+      - postgres  # Wait for PostgreSQL before starting
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - AIRFLOW__WEBSERVER__SECRET_KEY=admin
-      - AIRFLOW__CORE__LOAD_EXAMPLES=False
-      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
-      - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/opt/airflow/logs
-      - AIRFLOW__LOGGING__REMOTE_LOGGING=False
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # DB connection string for Airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor  # Set the executor to LocalExecutor
+      - AIRFLOW__WEBSERVER__SECRET_KEY=admin  # Web server secret key
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False  # Disable example DAGs
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags  # DAGs folder path
+      - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/opt/airflow/logs  # Log folder path
+      - AIRFLOW__LOGGING__REMOTE_LOGGING=False  # Disable remote logging
       - LAMBDA_EXECUTOR=docker
       - DEFAULT_REGION=us-east-1
       - AWS_ACCESS_KEY_ID=root
       - AWS_SECRET_ACCESS_KEY=root
       - AWS_DEFAULT_REGION=us-east-1
-      - AWS_ENDPOINT_URL=http://localstack:4566
+      - AWS_ENDPOINT_URL=http://localstack:4566  # LocalStack endpoint for AWS services
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
       - ./src:/opt/airflow/src
       - ./build:/opt/airflow/build
-      - ~/.aws:/root/.aws
+      - ~/.aws:/root/.aws  # Mount AWS credentials for LocalStack access
     ports:
-      - "8080:8080"
+      - "8080:8080"  # Expose Airflow web interface on port 8080
     command: bash -c "airflow webserver"
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]  # Health check for Airflow webserver
       interval: 30s
       timeout: 10s
       retries: 5
     networks:
-      - airflow-net
+      - default
 
+  # Airflow scheduler container
   airflow-scheduler:
     image: apache/airflow:2.7.1
     container_name: airflow-scheduler
     hostname: airflow-scheduler
     depends_on:
-      - airflow-webserver
+      - airflow-webserver  # Wait for web server before starting
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # DB connection string for Airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor  # Set the executor to LocalExecutor
       - AIRFLOW__WEBSERVER__SECRET_KEY=admin
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
       - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags
@@ -138,22 +141,23 @@ services:
       - ~/.aws:/root/.aws
     command: bash -c "airflow scheduler"
     networks:
-      - airflow-net
+      - default
 
+  # Airflow initialization container (runs once to set up the database and user)
   airflow-init:
     image: apache/airflow:2.7.1
     container_name: airflow-init
     hostname: airflow-init
     depends_on:
-      - postgres
+      - postgres  # Wait for PostgreSQL before starting
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # DB connection string for Airflow
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-      - _AIRFLOW_DB_UPGRADE=true
-      - _AIRFLOW_WWW_USER_CREATE=true
-      - _AIRFLOW_WWW_USER_USERNAME=airflow
-      - _AIRFLOW_WWW_USER_PASSWORD=airflow
-      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - _AIRFLOW_DB_UPGRADE=true  # Upgrade the database schema
+      - _AIRFLOW_WWW_USER_CREATE=true  # Create the default Airflow web user
+      - _AIRFLOW_WWW_USER_USERNAME=airflow  # Username for the web user
+      - _AIRFLOW_WWW_USER_PASSWORD=airflow  # Password for the web user
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False  # Disable example DAGs
       - PYTHONPATH=/opt/airflow
     command: >
       bash -c "
@@ -161,7 +165,7 @@ services:
         airflow db init &&
         airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com" &&
         airflow version
-      "
+      "  # Initialize Airflow database and create admin user
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
@@ -170,7 +174,13 @@ services:
       - ./build:/opt/airflow/build
       - ~/.aws:/root/.aws
     networks:
-      - airflow-net
+      - default
 
+# Volumes to persist data across container restarts
 volumes:
   postgres_data:
+
+# Default network for all services
+networks:
+  default:
+    name: data-lake-network
